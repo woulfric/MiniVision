@@ -16,7 +16,7 @@ VAL: IDF
 
 %%
 
-main(){
+main(){ 
     yyparse();
     yywrap();
 }

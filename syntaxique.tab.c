@@ -1570,7 +1570,7 @@ yyreturn:
 #line 17 ".\\syntaxique.y"
 
 
-main(){
+main(){ 
     yyparse();
     yywrap();
 }
