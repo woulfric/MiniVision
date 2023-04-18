@@ -8,6 +8,7 @@ lettreMin   [a-z]
 lettre      [a-zA-Z]
 chiffre     [0-9]
 idf         [a-zA-Z][a-zA-Z0-9_]*
+comment     \#(.*\n)
 
 %%
 
@@ -52,10 +53,15 @@ idf         [a-zA-Z][a-zA-Z0-9_]*
 "for"                   {col++;printf("MC : %s ==> ligne :%d colone : %d \n",yytext,line,col); return FOR;}
 "in"                    {col++;printf("MC : %s ==> ligne :%d colone : %d \n",yytext,line,col); return IN;}
 "range"                 {col++;printf("MC : %s ==> ligne :%d colone : %d \n",yytext,line,col); return RANGE;}
+"if"                    {col++;printf("MC : %s ==> ligne :%d colone : %d \n",yytext,line,col); return IF;}
+"else"                  {col++;printf("MC : %s ==> ligne :%d colone : %d \n",yytext,line,col); return ELSE;}
+"elif"                  {col++;printf("MC : %s ==> ligne :%d colone : %d \n",yytext,line,col); return ELIF;}
+"def"                   {col++;printf("MC : %s ==> ligne :%d colone : %d \n",yytext,line,col); return DEF;}
 
 
 "numpy"                 {col++;printf("IDF : %s ==> ligne :%d colone : %d \n",yytext,line,col); return NUMPY;}
 "matplotlib.pyplot"     {col++;printf("IDF : %s ==> ligne :%d colone : %d \n",yytext,line,col); return MATPLOTLIB;}
+{comment}               {printf("commentaire : %s ==> ligne :%d colone : %d \n",yytext,line,col);}
 {idf}                   {col++;printf("IDF : %s ==> ligne :%d colone : %d \n",yytext,line,col); return IDF;}
 
 [ \t]

@@ -74,7 +74,11 @@
      SUP_EGALE = 290,
      EGALE_EGALE = 291,
      NOT_EGALE = 292,
-     EGALE = 293
+     EGALE = 293,
+     IF = 294,
+     ELSE = 295,
+     ELIF = 296,
+     DEF = 297
    };
 #endif
 
