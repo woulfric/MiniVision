@@ -816,7 +816,7 @@ YY_RULE_SETUP
 case 28:
 YY_RULE_SETUP
 #line 57 ".\\lexical.l"
-{col = col+strlen(yytext);printf("MC : %s ==> ligne :%d colone : %d \n",yytext,line,col); return IMPORT;}
+{col = col+strlen(yytext);printf("MC : %s ==> ligne :%d colone : %d \n",yytext,line,col); return MC_IMPORT;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
@@ -870,12 +870,12 @@ YY_RULE_SETUP
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 71 ".\\lexical.l"
+#line 72 ".\\lexical.l"
 {col = col+strlen(yytext);printf("caractere reconnue %s \n", yytext ); return VAL_CHAR;}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 72 ".\\lexical.l"
+#line 73 ".\\lexical.l"
 {col = col+strlen(yytext);printf("chaine de caractere reconnue %s \n" , yytext );return VAL_STRING;}
 	YY_BREAK
 case 41:

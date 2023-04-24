@@ -3,8 +3,4 @@ import numpy as np
 
 import matplotlib.pyplot as plt
 echiquier_array = X
-
-if 
-else
-elif 
-def
+X

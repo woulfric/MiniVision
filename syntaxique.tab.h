@@ -46,7 +46,7 @@
      VRG = 262,
      DEUX_POINTS = 263,
      POINT = 264,
-     IMPORT = 265,
+     MC_IMPORT = 265,
      AS = 266,
      NUMPY = 267,
      MATPLOTLIB = 268,

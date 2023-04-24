@@ -68,9 +68,9 @@ comment     \#(.*\n)
 "numpy"                 {col = col+strlen(yytext);printf("IDF : %s ==> ligne :%d colone : %d \n",yytext,line,col); return NUMPY;}
 "matplotlib.pyplot"     {col = col+strlen(yytext);printf("IDF : %s ==> ligne :%d colone : %d \n",yytext,line,col); return MATPLOTLIB;}
 
+
 {CST_CHAR}              {col = col+strlen(yytext);printf("caractere reconnue %s \n", yytext ); return VAL_CHAR;}
 {CST_STRING}            {col = col+strlen(yytext);printf("chaine de caractere reconnue %s \n" , yytext );return VAL_STRING;}
-
 {CST_INT}               {if(atoi(yytext)<-32768||atoi(yytext)>32768){printf("integer invalide ligne:%d,colonne:%d",line,col);}
                          else{
                                 yylval.entier=atoi(yytext);     
