@@ -45,47 +45,65 @@
      ACOLADE_FERMANTE = 261,
      VRG = 262,
      DEUX_POINTS = 263,
-     POURCENT = 264,
-     EGUALE = 265,
-     COMM = 266,
-     POINT = 267,
-     IMPORT = 268,
-     AS = 269,
-     NUMPY = 270,
-     MATPLOTLIB = 271,
-     FOR = 272,
-     IN = 273,
-     RANGE = 274,
-     IDF = 275,
-     INT = 276,
-     FLOAT = 277,
-     CHAR = 278,
-     BOOL = 279,
-     PLUS = 280,
-     MOIN = 281,
-     MULTI = 282,
-     DIVISION = 283,
-     AND = 284,
-     OR = 285,
-     NOT = 286,
-     INF = 287,
-     SUP = 288,
-     INF_EGALE = 289,
-     SUP_EGALE = 290,
-     EGALE_EGALE = 291,
-     NOT_EGALE = 292,
-     EGALE = 293,
-     IF = 294,
-     ELSE = 295,
-     ELIF = 296,
-     DEF = 297
+     POINT = 264,
+     IMPORT = 265,
+     AS = 266,
+     NUMPY = 267,
+     MATPLOTLIB = 268,
+     FOR = 269,
+     IN = 270,
+     RANGE = 271,
+     IF = 272,
+     ELSE = 273,
+     ELIF = 274,
+     DEF = 275,
+     IDF = 276,
+     VAL_INT = 277,
+     VAL_FLOAT = 278,
+     VAL_CHAR = 279,
+     VAL_STRING = 280,
+     INT = 281,
+     FLOAT = 282,
+     CHAR = 283,
+     BOOL = 284,
+     PLUS = 285,
+     MOIN = 286,
+     MULTI = 287,
+     DIVISION = 288,
+     AND = 289,
+     OR = 290,
+     NOT = 291,
+     INF = 292,
+     SUP = 293,
+     INF_EGALE = 294,
+     SUP_EGALE = 295,
+     EGALE_EGALE = 296,
+     NOT_EGALE = 297,
+     EGALE = 298,
+     POURCENT = 299,
+     EGUALE = 300,
+     COMM = 301
    };
 #endif
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+typedef union YYSTYPE
+{
+
+/* Line 1676 of yacc.c  */
+#line 4 ".\\syntaxique.y"
+
+	int     entier;
+	float   reel;
+	char*   string;
+
+
+
+/* Line 1676 of yacc.c  */
+#line 106 "syntaxique.tab.h"
+} YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

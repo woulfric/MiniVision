@@ -107,47 +107,65 @@
      ACOLADE_FERMANTE = 261,
      VRG = 262,
      DEUX_POINTS = 263,
-     POURCENT = 264,
-     EGUALE = 265,
-     COMM = 266,
-     POINT = 267,
-     IMPORT = 268,
-     AS = 269,
-     NUMPY = 270,
-     MATPLOTLIB = 271,
-     FOR = 272,
-     IN = 273,
-     RANGE = 274,
-     IDF = 275,
-     INT = 276,
-     FLOAT = 277,
-     CHAR = 278,
-     BOOL = 279,
-     PLUS = 280,
-     MOIN = 281,
-     MULTI = 282,
-     DIVISION = 283,
-     AND = 284,
-     OR = 285,
-     NOT = 286,
-     INF = 287,
-     SUP = 288,
-     INF_EGALE = 289,
-     SUP_EGALE = 290,
-     EGALE_EGALE = 291,
-     NOT_EGALE = 292,
-     EGALE = 293,
-     IF = 294,
-     ELSE = 295,
-     ELIF = 296,
-     DEF = 297
+     POINT = 264,
+     IMPORT = 265,
+     AS = 266,
+     NUMPY = 267,
+     MATPLOTLIB = 268,
+     FOR = 269,
+     IN = 270,
+     RANGE = 271,
+     IF = 272,
+     ELSE = 273,
+     ELIF = 274,
+     DEF = 275,
+     IDF = 276,
+     VAL_INT = 277,
+     VAL_FLOAT = 278,
+     VAL_CHAR = 279,
+     VAL_STRING = 280,
+     INT = 281,
+     FLOAT = 282,
+     CHAR = 283,
+     BOOL = 284,
+     PLUS = 285,
+     MOIN = 286,
+     MULTI = 287,
+     DIVISION = 288,
+     AND = 289,
+     OR = 290,
+     NOT = 291,
+     INF = 292,
+     SUP = 293,
+     INF_EGALE = 294,
+     SUP_EGALE = 295,
+     EGALE_EGALE = 296,
+     NOT_EGALE = 297,
+     EGALE = 298,
+     POURCENT = 299,
+     EGUALE = 300,
+     COMM = 301
    };
 #endif
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+typedef union YYSTYPE
+{
+
+/* Line 214 of yacc.c  */
+#line 4 ".\\syntaxique.y"
+
+	int     entier;
+	float   reel;
+	char*   string;
+
+
+
+/* Line 214 of yacc.c  */
+#line 168 "syntaxique.tab.c"
+} YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -158,7 +176,7 @@ typedef int YYSTYPE;
 
 
 /* Line 264 of yacc.c  */
-#line 162 "syntaxique.tab.c"
+#line 180 "syntaxique.tab.c"
 
 #ifdef short
 # undef short
@@ -376,7 +394,7 @@ union yyalloc
 #define YYLAST   16
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  43
+#define YYNTOKENS  47
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  7
 /* YYNRULES -- Number of rules.  */
@@ -386,7 +404,7 @@ union yyalloc
 
 /* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   297
+#define YYMAXUTOK   301
 
 #define YYTRANSLATE(YYX)						\
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -423,7 +441,8 @@ static const yytype_uint8 yytranslate[] =
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
       25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
-      35,    36,    37,    38,    39,    40,    41,    42
+      35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
+      45,    46
 };
 
 #if YYDEBUG
@@ -438,17 +457,17 @@ static const yytype_uint8 yyprhs[] =
 /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
 static const yytype_int8 yyrhs[] =
 {
-      44,     0,    -1,    45,    45,    47,    49,    49,    49,    49,
-      -1,    13,    46,    14,    20,    -1,    15,    -1,    16,    -1,
-      20,    38,    48,    -1,    20,    -1,    39,    -1,    40,    -1,
-      41,    -1,    42,    -1
+      48,     0,    -1,    49,    49,    51,    53,    53,    53,    53,
+      -1,    10,    50,    11,    21,    -1,    12,    -1,    13,    -1,
+      21,    43,    52,    -1,    21,    -1,    17,    -1,    18,    -1,
+      19,    -1,    20,    -1
 };
 
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,     9,     9,    11,    12,    12,    14,    15,    16,    16,
-      16,    16
+       0,    28,    28,    30,    31,    31,    33,    34,    35,    35,
+      35,    35
 };
 #endif
 
@@ -459,12 +478,13 @@ static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "PARENTESE_OUVRANTE",
   "PARENTESE_FERMANTE", "ACOLADE_OUVRANTE", "ACOLADE_FERMANTE", "VRG",
-  "DEUX_POINTS", "POURCENT", "EGUALE", "COMM", "POINT", "IMPORT", "AS",
-  "NUMPY", "MATPLOTLIB", "FOR", "IN", "RANGE", "IDF", "INT", "FLOAT",
-  "CHAR", "BOOL", "PLUS", "MOIN", "MULTI", "DIVISION", "AND", "OR", "NOT",
-  "INF", "SUP", "INF_EGALE", "SUP_EGALE", "EGALE_EGALE", "NOT_EGALE",
-  "EGALE", "IF", "ELSE", "ELIF", "DEF", "$accept", "S", "IMPORT_LIB",
-  "LIB", "DECLARTION", "VAL", "TEST", 0
+  "DEUX_POINTS", "POINT", "IMPORT", "AS", "NUMPY", "MATPLOTLIB", "FOR",
+  "IN", "RANGE", "IF", "ELSE", "ELIF", "DEF", "IDF", "VAL_INT",
+  "VAL_FLOAT", "VAL_CHAR", "VAL_STRING", "INT", "FLOAT", "CHAR", "BOOL",
+  "PLUS", "MOIN", "MULTI", "DIVISION", "AND", "OR", "NOT", "INF", "SUP",
+  "INF_EGALE", "SUP_EGALE", "EGALE_EGALE", "NOT_EGALE", "EGALE",
+  "POURCENT", "EGUALE", "COMM", "$accept", "S", "IMPORT_LIB", "LIB",
+  "DECLARTION", "VAL", "TEST", 0
 };
 #endif
 
@@ -477,15 +497,15 @@ static const yytype_uint16 yytoknum[] =
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
      275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
      285,   286,   287,   288,   289,   290,   291,   292,   293,   294,
-     295,   296,   297
+     295,   296,   297,   298,   299,   300,   301
 };
 # endif
 
 /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    43,    44,    45,    46,    46,    47,    48,    49,    49,
-      49,    49
+       0,    47,    48,    49,    50,    50,    51,    52,    53,    53,
+      53,    53
 };
 
 /* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
@@ -513,18 +533,18 @@ static const yytype_int8 yydefgoto[] =
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
    STATE-NUM.  */
-#define YYPACT_NINF -35
+#define YYPACT_NINF -30
 static const yytype_int8 yypact[] =
 {
-      -4,   -14,    10,    -4,   -35,   -35,    -3,   -35,    -8,    -7,
-     -24,   -34,   -35,    -5,   -35,   -35,   -35,   -35,   -34,   -35,
-     -35,   -34,   -34,   -35
+      -1,   -11,    10,    -1,   -30,   -30,     0,   -30,    -9,    -8,
+     -29,   -12,   -30,    -6,   -30,   -30,   -30,   -30,   -12,   -30,
+     -30,   -12,   -12,   -30
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -35,   -35,    13,   -35,   -35,   -35,   -18
+     -30,   -30,    13,   -30,   -30,   -30,   -18
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
@@ -540,17 +560,17 @@ static const yytype_uint8 yytable[] =
 
 static const yytype_uint8 yycheck[] =
 {
-      18,    15,    16,    21,    22,    39,    40,    41,    42,    13,
-       0,    14,    20,    20,    38,    20,     3
+      18,    12,    13,    21,    22,    17,    18,    19,    20,    10,
+       0,    11,    21,    21,    43,    21,     3
 };
 
 /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
    symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,    13,    44,    45,    15,    16,    46,     0,    45,    14,
-      20,    47,    20,    38,    39,    40,    41,    42,    49,    20,
-      48,    49,    49,    49
+       0,    10,    48,    49,    12,    13,    50,     0,    49,    11,
+      21,    51,    21,    43,    17,    18,    19,    20,    53,    21,
+      52,    53,    53,    53
 };
 
 #define yyerrok		(yyerrstatus = 0)
@@ -1364,14 +1384,14 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 9 ".\\syntaxique.y"
+#line 28 ".\\syntaxique.y"
     { printf("programe correct syntaxiquement"); YYACCEPT;;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 1375 "syntaxique.tab.c"
+#line 1395 "syntaxique.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1583,7 +1603,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 18 ".\\syntaxique.y"
+#line 37 ".\\syntaxique.y"
 
 
 main(){ 
