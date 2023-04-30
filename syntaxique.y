@@ -25,7 +25,7 @@
 
 %%
 
-S: IMPORT DECLARATION { printf("programe correct syntaxiquement"); YYACCEPT;};
+S: IMPORT {afficher(); printf("programe correct syntaxiquement"); YYACCEPT;};
 
 IMPORT: MC_IMPORT LIB AS IDF IMPORT
 		| 

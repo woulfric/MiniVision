@@ -1,6 +1,1 @@
 import numpy as np
-#test 
-
-import matplotlib.pyplot as plt
-echiquier_array = X
-X
