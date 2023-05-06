@@ -1,1 +1,4 @@
-import numpy as np
+if x == "test": 
+echiquier_array[x, y] = 0 
+else: 
+echiquier_array = 255

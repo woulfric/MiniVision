@@ -46,43 +46,46 @@
      VRG = 262,
      DEUX_POINTS = 263,
      POINT = 264,
-     MC_IMPORT = 265,
-     AS = 266,
-     NUMPY = 267,
-     MATPLOTLIB = 268,
-     FOR = 269,
-     IN = 270,
-     RANGE = 271,
-     IF = 272,
-     ELSE = 273,
-     ELIF = 274,
-     DEF = 275,
-     IDF = 276,
-     VAL_INT = 277,
-     VAL_FLOAT = 278,
-     VAL_CHAR = 279,
-     VAL_STRING = 280,
-     INT = 281,
-     FLOAT = 282,
-     CHAR = 283,
-     BOOL = 284,
-     PLUS = 285,
-     MOIN = 286,
-     MULTI = 287,
-     DIVISION = 288,
-     AND = 289,
-     OR = 290,
-     NOT = 291,
-     INF = 292,
-     SUP = 293,
-     INF_EGALE = 294,
-     SUP_EGALE = 295,
-     EGALE_EGALE = 296,
-     NOT_EGALE = 297,
-     EGALE = 298,
-     POURCENT = 299,
-     EGUALE = 300,
-     COMM = 301
+     GUI1 = 265,
+     GUI2 = 266,
+     CROCHET_OUVRANT = 267,
+     CROCHET_FERMANT = 268,
+     MC_IMPORT = 269,
+     AS = 270,
+     NUMPY = 271,
+     MATPLOTLIB = 272,
+     FOR = 273,
+     IN = 274,
+     RANGE = 275,
+     IF = 276,
+     ELSE = 277,
+     ELIF = 278,
+     DEF = 279,
+     IDF = 280,
+     VAL_INT = 281,
+     VAL_FLOAT = 282,
+     VAL_CHAR = 283,
+     VAL_STRING = 284,
+     INT = 285,
+     FLOAT = 286,
+     CHAR = 287,
+     BOOL = 288,
+     PLUS = 289,
+     MOIN = 290,
+     MULTI = 291,
+     DIVISION = 292,
+     AND = 293,
+     OR = 294,
+     NOT = 295,
+     INF = 296,
+     SUP = 297,
+     INF_EGALE = 298,
+     SUP_EGALE = 299,
+     EGALE_EGALE = 300,
+     NOT_EGALE = 301,
+     EGALE = 302,
+     POURCENT = 303,
+     COMM = 304
    };
 #endif
 
@@ -93,7 +96,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 4 ".\\syntaxique.y"
+#line 6 "syntaxique.y"
 
 	int     entier;
 	float   reel;
@@ -102,7 +105,7 @@ typedef union YYSTYPE
 
 
 /* Line 1676 of yacc.c  */
-#line 106 "syntaxique.tab.h"
+#line 109 "syntaxique.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

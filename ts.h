@@ -25,11 +25,11 @@ typedef struct TS_MC_SEP{
 TS_MC_SEP *liste_MC  = NULL;
 TS_MC_SEP *liste_SEP = NULL;
 TS_MC_SEP *Q = NULL;
+TS_MC_SEP *new2 = NULL;
 
 TS_IDF *liste_IDF = NULL;
 TS_IDF *p = NULL;
 TS_IDF *new = NULL;
-TS_IDF *new2 = NULL;
 
 
 //fonctions
@@ -87,7 +87,7 @@ void insertion(char name[], char type[], char code[], float val, int y){
             else{
                 
                 Q = liste_MC;
-                new = malloc(sizeof(TS_MC_SEP));
+                new2 = malloc(sizeof(TS_MC_SEP));
                 strcpy(new2->name, name);
                 strcpy(new2->type, type);
                 new2->next = NULL;
@@ -187,12 +187,12 @@ void rechercher(char name[], char code[], char type[], float val, int y){
             while(p != NULL && strcmp(p->name, name) != 0){
                 p = p->next;
             }
-            //si il n'existe ^pas on l'insert
+            //si il n'existe pas on l'insert
             if (p == NULL){
                 insertion(name, type, code, val, 0);
             }
             else{
-                printf("\n l'entité %s existe deja dans la tables des IDF\n",name); 
+                // printf("\n l'entite %s existe deja dans la tables des IDF\n",name); 
             }
         break;
 
@@ -206,7 +206,7 @@ void rechercher(char name[], char code[], char type[], float val, int y){
                 insertion(name, type, code, val, 1);
             }
             else{
-                printf("\n l'entité %s existe deja dans la tables des Mots clés\n",name); 
+                // printf("\n l'entite %s existe deja dans la tables des Mots clés\n",name); 
             }
             break;
 
@@ -224,7 +224,7 @@ void rechercher(char name[], char code[], char type[], float val, int y){
             }
             else{
                 
-                printf("\n l'entité %s existe deja dans la tables des separateurs\n",name); 
+                // printf("\n l'entite %s existe deja dans la tables des separateurs\n",name); 
             }
             break;
 
@@ -247,7 +247,7 @@ void afficher()
     p = liste_IDF;
     while (p != NULL)
     {
-        if (strcmp(p->code, "CONST") == 0 && (strcmp(p->type, "FLOAT") == 0 || strcmp(p->type, "INT") == 0))
+        if (strcmp(p->code, "CONST") == 0 && ((strcmp(p->type, "FLOAT") == 0 || strcmp(p->type, "INT") == 0)))
             printf("\t|%14s    |%10s     | %10s     | %10f \t\n", p->name, p->code, p->type, p->val);
         else
             printf("\t|%14s    |%10s     | %10s     | \t\n", p->name, p->code, p->type);

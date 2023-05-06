@@ -1,4 +1,6 @@
 %{
+    #include <stdio.h>
+    #include <stdlib.h>
     #include "syntaxique.tab.h"
     #include "ts.h" 
     int line = 1, col = 1;
@@ -19,65 +21,59 @@ comment     \#(.*\n)
 
 %%
 
-"."     {col = col+strlen(yytext);printf("POINT : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return POINT;}
-"("     {col = col+strlen(yytext);printf("SEP : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return PARENTESE_OUVRANTE;}
-")"     {col = col+strlen(yytext);printf("SEP : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return PARENTESE_FERMANTE;}
-"["     {col = col+strlen(yytext);printf("SEP : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return ACOLADE_OUVRANTE;}
-"]"     {col = col+strlen(yytext);printf("SEP : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return ACOLADE_FERMANTE;}
-","     {col = col+strlen(yytext);printf("SEP : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return VRG;}
-":"     {col = col+strlen(yytext);printf("SEP : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return DEUX_POINTS;}
-"%"     {col = col+strlen(yytext);printf("SEP : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return POURCENT;}
+"."     {printf("SEP : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return POINT;}
+"("     {printf("SEP : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return PARENTESE_OUVRANTE;}
+")"     {printf("SEP : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return PARENTESE_FERMANTE;}
+"["     {printf("SEP : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return ACOLADE_OUVRANTE;}
+"]"     {printf("SEP : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return ACOLADE_FERMANTE;}
+","     {printf("SEP : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return VRG;}
+":"     {printf("SEP : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return DEUX_POINTS;}
+"%"     {printf("SEP : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return POURCENT;}
 
-"+"        {col = col+strlen(yytext);printf("OPR : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return PLUS;}
-"-"        {col = col+strlen(yytext);printf("OPR : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return MOIN;}
-"*"        {col = col+strlen(yytext);printf("OPR : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return MULTI;}
-"/"        {col = col+strlen(yytext);printf("OPR : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return DIVISION;}
-"and"      {col = col+strlen(yytext);printf("OPR : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return AND;}
-"or"       {col = col+strlen(yytext);printf("OPR : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return OR;}
-"not"      {col = col+strlen(yytext);printf("OPR : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return NOT;}
-"<"        {col = col+strlen(yytext);printf("OPR : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return INF;}
-">"        {col = col+strlen(yytext);printf("OPR : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return SUP;}
-"<="       {col = col+strlen(yytext);printf("OPR : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return INF_EGALE;}
-">="       {col = col+strlen(yytext);printf("OPR : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return SUP_EGALE;}
-"=="       {col = col+strlen(yytext);printf("OPR : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return EGALE_EGALE;}
-"!="       {col = col+strlen(yytext);printf("OPR : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return NOT_EGALE;}
-"="        {col = col+strlen(yytext);printf("OPR : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "SEP", " ",  0, 2); return EGALE;}
-
-
-"#"     {col = col+strlen(yytext);printf("commentaire : %s ==> ligne :%d colone : %d \n",yytext,line,col); return COMM;}
-
-"int"       {col = col+strlen(yytext);printf("TYPE : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "MC", " ", 0, 1); return INT;}
-"float"     {col = col+strlen(yytext);printf("TYPE : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "MC", " ", 0, 1); return FLOAT;}
-"char"      {col = col+strlen(yytext);printf("TYPE : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "MC", " ", 0, 1); return CHAR;}
-"bool"      {col = col+strlen(yytext);printf("TYPE : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "MC", " ", 0, 1); return BOOL;}
-
-"import"                {col = col+strlen(yytext);printf("MC : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "MC", " ", 0, 1); return MC_IMPORT;}
-"as"                    {col = col+strlen(yytext);printf("MC : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "MC", " ", 0, 1); return AS;}
-"for"                   {col = col+strlen(yytext);printf("MC : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "MC", " ", 0, 1); return FOR;}
-"in"                    {col = col+strlen(yytext);printf("MC : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "MC", " ", 0, 1); return IN;}
-"range"                 {col = col+strlen(yytext);printf("MC : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "MC", " ", 0, 1); return RANGE;}
-"if"                    {col = col+strlen(yytext);printf("MC : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "MC", " ", 0, 1); return IF;}
-"else"                  {col = col+strlen(yytext);printf("MC : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "MC", " ", 0, 1); return ELSE;}
-"elif"                  {col = col+strlen(yytext);printf("MC : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "MC", " ", 0, 1); return ELIF;}
-"def"                   {col = col+strlen(yytext);printf("MC : %s ==> ligne :%d colone : %d \n",yytext,line,col); rechercher(yytext, "MC", " ", 0, 1); return DEF;}
+"+"        {printf("OPR : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return PLUS;}
+"-"        {printf("OPR : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return MOIN;}
+"*"        {printf("OPR : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return MULTI;}
+"/"        {printf("OPR : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return DIVISION;}
+"and"      {printf("OPR : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return AND;}
+"or"       {printf("OPR : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return OR;}
+"not"      {printf("OPR : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return NOT;}
+"<"        {printf("OPR : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return INF;}
+">"        {printf("OPR : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return SUP;}
+"<="       {printf("OPR : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return INF_EGALE;}
+">="       {printf("OPR : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return SUP_EGALE;}
+"=="       {printf("OPR : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return EGALE_EGALE;}
+"!="       {printf("OPR : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return NOT_EGALE;}
+"="        {printf("OPR : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "SEP", "",  0, 2); return EGALE;}
 
 
-"numpy"                 {col = col+strlen(yytext);printf("IDF : %s ==> ligne :%d colone : %d \n",yytext,line,col); return NUMPY;}
-"matplotlib.pyplot"     {col = col+strlen(yytext);printf("IDF : %s ==> ligne :%d colone : %d \n",yytext,line,col); return MATPLOTLIB;}
+"#"     {printf("commentaire : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); return COMM;}
+
+"int"       {printf("TYPE : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "MC", "", 0, 1); return INT;}
+"float"     {printf("TYPE : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "MC", "", 0, 1); return FLOAT;}
+"char"      {printf("TYPE : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "MC", "", 0, 1); return CHAR;}
+"bool"      {printf("TYPE : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "MC", "", 0, 1); return BOOL;}
+
+"import"                {printf("MC : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "MC", "", 0, 1); return MC_IMPORT;}
+"as"                    {printf("MC : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "MC", "", 0, 1); return AS;}
+"for"                   {printf("MC : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "MC", "", 0, 1); return FOR;}
+"in"                    {printf("MC : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "MC", "", 0, 1); return IN;}
+"range"                 {printf("MC : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "MC", "", 0, 1); return RANGE;}
+"if"                    {printf("MC : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "MC", "", 0, 1); return IF;}
+"else"                  {printf("MC : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "MC", "", 0, 1); return ELSE;}
+"elif"                  {printf("MC : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "MC", "", 0, 1); return ELIF;}
+"def"                   {printf("MC : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "MC", "", 0, 1); return DEF;}
 
 
-{CST_CHAR}              {col = col+strlen(yytext);printf("caractere reconnue %s \n", yytext ); return VAL_CHAR;}
-{CST_STRING}            {col = col+strlen(yytext);printf("chaine de caractere reconnue %s \n" , yytext );return VAL_STRING;}
-{CST_INT}               {if(atoi(yytext)<-32768||atoi(yytext)>32768){printf("integer invalide ligne:%d,colonne:%d",line,col);}
-                         else{
-                                yylval.entier=atoi(yytext);     
-                                printf("Entite Lexical reconnue %s \n" , yytext );
-                                col = col + strlen(yytext);
-                                return VAL_INT;}
-                        } 
-{CST_FLOAT}             {col = col+strlen(yytext);printf("REEL reconnue : %s \n",yytext); return VAL_FLOAT;}
-{comment}               {printf("commentaire : %s ==> ligne :%d colone : %d \n",yytext,line,col);}
-{idf}                   {col = col+strlen(yytext);printf("IDF : %s ==> ligne :%d colone : %d \n",yytext,line,col); return IDF;}
+"numpy"                 {printf("LIB : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "MC", "", 0, 1); return NUMPY;}
+"matplotlib.pyplot"     {printf("LIB : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "MC", "", 0, 1); return MATPLOTLIB;}
+
+
+{CST_CHAR}              {printf("CHAR : %s ==> ligne :%d  \n",yytext,line,col)       ; col = col+strlen(yytext); rechercher(yytext, "CST", "CHAR", 0, 0)            ; return VAL_CHAR;}
+{CST_STRING}            {printf("STRING : %s ==> ligne :%d  \n",yytext,line,col)     ; col = col+strlen(yytext); rechercher(yytext, "CST", "STRING", 0, 0)          ; return VAL_STRING;}    
+{CST_INT}               {printf("INT : %s ==> ligne :%d  \n",yytext,line,col)        ; col = col+strlen(yytext); rechercher(yytext, "CST", "INT", atoi(yytext), 0)  ; return VAL_INT;} 
+{CST_FLOAT}             {printf("FLOAT : %s ==> ligne :%d  \n",yytext,line,col)      ; col = col+strlen(yytext); rechercher(yytext, "CST", "FLOAT", atoi(yytext), 0); return VAL_FLOAT;}
+{comment}               {printf("commentaire : %s ==> ligne :%d  \n",yytext,line,col); col = col+strlen(yytext);}
+{idf}                   {printf("IDF : %s ==> ligne :%d  \n",yytext,line,col)        ; col = col+strlen(yytext); rechercher(yytext,"IDF","",0,0)                    ; return IDF;}
 
 [ \t]
 [\n]        {line++; col = 1;}
