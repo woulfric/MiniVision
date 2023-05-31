@@ -1,0 +1,21 @@
+# Comment
+int X=50, I, T[50]
+float Val = (-13.168), I
+Y = 40 + T[42]
+T[21] = Y + X * 3
+G = 40 / 0
+if (true or false and false):
+	T[22] = 60
+	if (X == 50):
+		T[23] = X + 4
+	else:
+		T[46] = X + 6
+else:
+	for J in T:
+		X = 32
+
+	while(X < 100):
+		X = X + 2
+
+	for I in range(3, 23):
+		T[22] = I + X + T[22]

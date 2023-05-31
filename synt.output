@@ -1,0 +1,1796 @@
+Terminals unused in grammar
+
+   err
+
+
+Grammar
+
+    0 $accept: PROG $end
+
+    1 PROG: LIST_INS
+
+    2 INS_DECTYPE: TYPE LIST_IDF
+
+    3 TYPE: mc_int
+    4     | mc_float
+    5     | mc_char
+    6     | mc_bool
+
+    7 LIST_IDF: idf
+    8         | idf lb v_int rb
+    9         | idf vrg LIST_IDF
+   10         | idf lb v_int rb vrg LIST_IDF
+   11         | idf aff v_int
+   12         | idf aff v_float
+   13         | idf aff v_char
+   14         | idf aff v_bool
+   15         | idf aff v_int vrg LIST_IDF
+   16         | idf aff v_float vrg LIST_IDF
+   17         | idf aff v_char vrg LIST_IDF
+   18         | idf aff v_bool vrg LIST_IDF
+
+   19 LIST_INS: INS LIST_INS
+   20         | INS
+
+   21 INS: INS_AFF newline
+   22    | INS_DECTYPE newline
+   23    | INS_IF
+   24    | INS_IF2
+   25    | INS_FOR_RANGE
+   26    | INS_FOR_TAB
+   27    | INS_WHILE
+
+   28 INS_AFF: idf aff EXP1
+   29        | idf lb v_int rb aff EXP1
+
+   30 EXP1: EXP1 add EXP2
+   31     | EXP1 sub EXP2
+   32     | EXP2
+
+   33 EXP2: EXP2 mul EXP3
+   34     | EXP2 divv EXP3
+   35     | EXP3
+
+   36 EXP3: lp EXP1 rp
+   37     | v_int
+   38     | v_float
+   39     | v_char
+   40     | v_bool
+   41     | idf
+   42     | idf lb v_int rb
+
+   43 INS_IF: INS_IF2 mc_else dd newline indent LIST_INS dedent
+
+   44 INS_IF2: INS_IF1 newline indent LIST_INS dedent
+
+   45 INS_IF1: mc_if lp COND rp dd
+
+   46 INS_FOR_RANGE: INS_FOR_RANGE2 newline indent LIST_INS dedent
+
+   47 INS_FOR_RANGE2: mc_for idf mc_in mc_range lp EXP1 vrg EXP1 rp dd
+
+   48 INS_FOR_TAB: INS_FOR_TAB2 indent LIST_INS dedent
+
+   49 INS_FOR_TAB2: mc_for idf mc_in idf dd newline
+
+   50 INS_WHILE: INS_WHILE2 indent LIST_INS dedent
+
+   51 INS_WHILE2: mc_while lp COND rp dd newline
+
+   52 EXP_B: EXP1 g EXP1
+   53      | EXP1 l EXP1
+   54      | EXP1 ge EXP1
+   55      | EXP1 le EXP1
+   56      | EXP1 eq EXP1
+   57      | EXP1 dif EXP1
+   58      | v_int
+   59      | v_float
+   60      | v_char
+   61      | v_bool
+   62      | idf
+   63      | idf lb v_int rb
+
+   64 COND: COND or COND1
+   65     | COND1
+
+   66 COND1: COND1 and COND2
+   67      | COND2
+
+   68 COND2: not COND3
+   69      | COND3
+
+   70 COND3: EXP_B
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+mc_int (258) 3
+mc_float (259) 4
+mc_char (260) 5
+mc_bool (261) 6
+mc_if (262) 45
+mc_else (263) 43
+mc_for (264) 47 49
+mc_in (265) 47 49
+mc_range (266) 47
+mc_while (267) 51
+add (268) 30
+sub (269) 31
+mul (270) 33
+divv (271) 34
+aff (272) 11 12 13 14 15 16 17 18 28 29
+vrg (273) 9 10 15 16 17 18 47
+lb (274) 8 10 29 42 63
+rb (275) 8 10 29 42 63
+lp (276) 36 45 47 51
+rp (277) 36 45 47 51
+dd (278) 43 45 47 49 51
+and (279) 66
+or (280) 64
+not (281) 68
+g (282) 52
+l (283) 53
+ge (284) 54
+le (285) 55
+eq (286) 56
+dif (287) 57
+idf (288) 7 8 9 10 11 12 13 14 15 16 17 18 28 29 41 42 47 49 62 63
+v_int (289) 8 10 11 15 29 37 42 58 63
+v_float (290) 12 16 38 59
+v_char (291) 13 17 39 60
+v_bool (292) 14 18 40 61
+indent (293) 43 44 46 48 50
+dedent (294) 43 44 46 48 50
+newline (295) 21 22 43 44 46 49 51
+err (296)
+
+
+Nonterminals, with rules where they appear
+
+$accept (42)
+    on left: 0
+PROG (43)
+    on left: 1, on right: 0
+INS_DECTYPE (44)
+    on left: 2, on right: 22
+TYPE (45)
+    on left: 3 4 5 6, on right: 2
+LIST_IDF (46)
+    on left: 7 8 9 10 11 12 13 14 15 16 17 18, on right: 2 9 10 15
+    16 17 18
+LIST_INS (47)
+    on left: 19 20, on right: 1 19 43 44 46 48 50
+INS (48)
+    on left: 21 22 23 24 25 26 27, on right: 19 20
+INS_AFF (49)
+    on left: 28 29, on right: 21
+EXP1 (50)
+    on left: 30 31 32, on right: 28 29 30 31 36 47 52 53 54 55 56 57
+EXP2 (51)
+    on left: 33 34 35, on right: 30 31 32 33 34
+EXP3 (52)
+    on left: 36 37 38 39 40 41 42, on right: 33 34 35
+INS_IF (53)
+    on left: 43, on right: 23
+INS_IF2 (54)
+    on left: 44, on right: 24 43
+INS_IF1 (55)
+    on left: 45, on right: 44
+INS_FOR_RANGE (56)
+    on left: 46, on right: 25
+INS_FOR_RANGE2 (57)
+    on left: 47, on right: 46
+INS_FOR_TAB (58)
+    on left: 48, on right: 26
+INS_FOR_TAB2 (59)
+    on left: 49, on right: 48
+INS_WHILE (60)
+    on left: 50, on right: 27
+INS_WHILE2 (61)
+    on left: 51, on right: 50
+EXP_B (62)
+    on left: 52 53 54 55 56 57 58 59 60 61 62 63, on right: 70
+COND (63)
+    on left: 64 65, on right: 45 51 64
+COND1 (64)
+    on left: 66 67, on right: 64 65 66
+COND2 (65)
+    on left: 68 69, on right: 66 67
+COND3 (66)
+    on left: 70, on right: 68 69
+
+
+state 0
+
+    0 $accept: . PROG $end
+
+    mc_int    shift, and go to state 1
+    mc_float  shift, and go to state 2
+    mc_char   shift, and go to state 3
+    mc_bool   shift, and go to state 4
+    mc_if     shift, and go to state 5
+    mc_for    shift, and go to state 6
+    mc_while  shift, and go to state 7
+    idf       shift, and go to state 8
+
+    PROG            go to state 9
+    INS_DECTYPE     go to state 10
+    TYPE            go to state 11
+    LIST_INS        go to state 12
+    INS             go to state 13
+    INS_AFF         go to state 14
+    INS_IF          go to state 15
+    INS_IF2         go to state 16
+    INS_IF1         go to state 17
+    INS_FOR_RANGE   go to state 18
+    INS_FOR_RANGE2  go to state 19
+    INS_FOR_TAB     go to state 20
+    INS_FOR_TAB2    go to state 21
+    INS_WHILE       go to state 22
+    INS_WHILE2      go to state 23
+
+
+state 1
+
+    3 TYPE: mc_int .
+
+    $default  reduce using rule 3 (TYPE)
+
+
+state 2
+
+    4 TYPE: mc_float .
+
+    $default  reduce using rule 4 (TYPE)
+
+
+state 3
+
+    5 TYPE: mc_char .
+
+    $default  reduce using rule 5 (TYPE)
+
+
+state 4
+
+    6 TYPE: mc_bool .
+
+    $default  reduce using rule 6 (TYPE)
+
+
+state 5
+
+   45 INS_IF1: mc_if . lp COND rp dd
+
+    lp  shift, and go to state 24
+
+
+state 6
+
+   47 INS_FOR_RANGE2: mc_for . idf mc_in mc_range lp EXP1 vrg EXP1 rp dd
+   49 INS_FOR_TAB2: mc_for . idf mc_in idf dd newline
+
+    idf  shift, and go to state 25
+
+
+state 7
+
+   51 INS_WHILE2: mc_while . lp COND rp dd newline
+
+    lp  shift, and go to state 26
+
+
+state 8
+
+   28 INS_AFF: idf . aff EXP1
+   29        | idf . lb v_int rb aff EXP1
+
+    aff  shift, and go to state 27
+    lb   shift, and go to state 28
+
+
+state 9
+
+    0 $accept: PROG . $end
+
+    $end  shift, and go to state 29
+
+
+state 10
+
+   22 INS: INS_DECTYPE . newline
+
+    newline  shift, and go to state 30
+
+
+state 11
+
+    2 INS_DECTYPE: TYPE . LIST_IDF
+
+    idf  shift, and go to state 31
+
+    LIST_IDF  go to state 32
+
+
+state 12
+
+    1 PROG: LIST_INS .
+
+    $default  reduce using rule 1 (PROG)
+
+
+state 13
+
+   19 LIST_INS: INS . LIST_INS
+   20         | INS .
+
+    mc_int    shift, and go to state 1
+    mc_float  shift, and go to state 2
+    mc_char   shift, and go to state 3
+    mc_bool   shift, and go to state 4
+    mc_if     shift, and go to state 5
+    mc_for    shift, and go to state 6
+    mc_while  shift, and go to state 7
+    idf       shift, and go to state 8
+
+    $default  reduce using rule 20 (LIST_INS)
+
+    INS_DECTYPE     go to state 10
+    TYPE            go to state 11
+    LIST_INS        go to state 33
+    INS             go to state 13
+    INS_AFF         go to state 14
+    INS_IF          go to state 15
+    INS_IF2         go to state 16
+    INS_IF1         go to state 17
+    INS_FOR_RANGE   go to state 18
+    INS_FOR_RANGE2  go to state 19
+    INS_FOR_TAB     go to state 20
+    INS_FOR_TAB2    go to state 21
+    INS_WHILE       go to state 22
+    INS_WHILE2      go to state 23
+
+
+state 14
+
+   21 INS: INS_AFF . newline
+
+    newline  shift, and go to state 34
+
+
+state 15
+
+   23 INS: INS_IF .
+
+    $default  reduce using rule 23 (INS)
+
+
+state 16
+
+   24 INS: INS_IF2 .
+   43 INS_IF: INS_IF2 . mc_else dd newline indent LIST_INS dedent
+
+    mc_else  shift, and go to state 35
+
+    $default  reduce using rule 24 (INS)
+
+
+state 17
+
+   44 INS_IF2: INS_IF1 . newline indent LIST_INS dedent
+
+    newline  shift, and go to state 36
+
+
+state 18
+
+   25 INS: INS_FOR_RANGE .
+
+    $default  reduce using rule 25 (INS)
+
+
+state 19
+
+   46 INS_FOR_RANGE: INS_FOR_RANGE2 . newline indent LIST_INS dedent
+
+    newline  shift, and go to state 37
+
+
+state 20
+
+   26 INS: INS_FOR_TAB .
+
+    $default  reduce using rule 26 (INS)
+
+
+state 21
+
+   48 INS_FOR_TAB: INS_FOR_TAB2 . indent LIST_INS dedent
+
+    indent  shift, and go to state 38
+
+
+state 22
+
+   27 INS: INS_WHILE .
+
+    $default  reduce using rule 27 (INS)
+
+
+state 23
+
+   50 INS_WHILE: INS_WHILE2 . indent LIST_INS dedent
+
+    indent  shift, and go to state 39
+
+
+state 24
+
+   45 INS_IF1: mc_if lp . COND rp dd
+
+    lp       shift, and go to state 40
+    not      shift, and go to state 41
+    idf      shift, and go to state 42
+    v_int    shift, and go to state 43
+    v_float  shift, and go to state 44
+    v_char   shift, and go to state 45
+    v_bool   shift, and go to state 46
+
+    EXP1   go to state 47
+    EXP2   go to state 48
+    EXP3   go to state 49
+    EXP_B  go to state 50
+    COND   go to state 51
+    COND1  go to state 52
+    COND2  go to state 53
+    COND3  go to state 54
+
+
+state 25
+
+   47 INS_FOR_RANGE2: mc_for idf . mc_in mc_range lp EXP1 vrg EXP1 rp dd
+   49 INS_FOR_TAB2: mc_for idf . mc_in idf dd newline
+
+    mc_in  shift, and go to state 55
+
+
+state 26
+
+   51 INS_WHILE2: mc_while lp . COND rp dd newline
+
+    lp       shift, and go to state 40
+    not      shift, and go to state 41
+    idf      shift, and go to state 42
+    v_int    shift, and go to state 43
+    v_float  shift, and go to state 44
+    v_char   shift, and go to state 45
+    v_bool   shift, and go to state 46
+
+    EXP1   go to state 47
+    EXP2   go to state 48
+    EXP3   go to state 49
+    EXP_B  go to state 50
+    COND   go to state 56
+    COND1  go to state 52
+    COND2  go to state 53
+    COND3  go to state 54
+
+
+state 27
+
+   28 INS_AFF: idf aff . EXP1
+
+    lp       shift, and go to state 40
+    idf      shift, and go to state 57
+    v_int    shift, and go to state 58
+    v_float  shift, and go to state 59
+    v_char   shift, and go to state 60
+    v_bool   shift, and go to state 61
+
+    EXP1  go to state 62
+    EXP2  go to state 48
+    EXP3  go to state 49
+
+
+state 28
+
+   29 INS_AFF: idf lb . v_int rb aff EXP1
+
+    v_int  shift, and go to state 63
+
+
+state 29
+
+    0 $accept: PROG $end .
+
+    $default  accept
+
+
+state 30
+
+   22 INS: INS_DECTYPE newline .
+
+    $default  reduce using rule 22 (INS)
+
+
+state 31
+
+    7 LIST_IDF: idf .
+    8         | idf . lb v_int rb
+    9         | idf . vrg LIST_IDF
+   10         | idf . lb v_int rb vrg LIST_IDF
+   11         | idf . aff v_int
+   12         | idf . aff v_float
+   13         | idf . aff v_char
+   14         | idf . aff v_bool
+   15         | idf . aff v_int vrg LIST_IDF
+   16         | idf . aff v_float vrg LIST_IDF
+   17         | idf . aff v_char vrg LIST_IDF
+   18         | idf . aff v_bool vrg LIST_IDF
+
+    aff  shift, and go to state 64
+    vrg  shift, and go to state 65
+    lb   shift, and go to state 66
+
+    $default  reduce using rule 7 (LIST_IDF)
+
+
+state 32
+
+    2 INS_DECTYPE: TYPE LIST_IDF .
+
+    $default  reduce using rule 2 (INS_DECTYPE)
+
+
+state 33
+
+   19 LIST_INS: INS LIST_INS .
+
+    $default  reduce using rule 19 (LIST_INS)
+
+
+state 34
+
+   21 INS: INS_AFF newline .
+
+    $default  reduce using rule 21 (INS)
+
+
+state 35
+
+   43 INS_IF: INS_IF2 mc_else . dd newline indent LIST_INS dedent
+
+    dd  shift, and go to state 67
+
+
+state 36
+
+   44 INS_IF2: INS_IF1 newline . indent LIST_INS dedent
+
+    indent  shift, and go to state 68
+
+
+state 37
+
+   46 INS_FOR_RANGE: INS_FOR_RANGE2 newline . indent LIST_INS dedent
+
+    indent  shift, and go to state 69
+
+
+state 38
+
+   48 INS_FOR_TAB: INS_FOR_TAB2 indent . LIST_INS dedent
+
+    mc_int    shift, and go to state 1
+    mc_float  shift, and go to state 2
+    mc_char   shift, and go to state 3
+    mc_bool   shift, and go to state 4
+    mc_if     shift, and go to state 5
+    mc_for    shift, and go to state 6
+    mc_while  shift, and go to state 7
+    idf       shift, and go to state 8
+
+    INS_DECTYPE     go to state 10
+    TYPE            go to state 11
+    LIST_INS        go to state 70
+    INS             go to state 13
+    INS_AFF         go to state 14
+    INS_IF          go to state 15
+    INS_IF2         go to state 16
+    INS_IF1         go to state 17
+    INS_FOR_RANGE   go to state 18
+    INS_FOR_RANGE2  go to state 19
+    INS_FOR_TAB     go to state 20
+    INS_FOR_TAB2    go to state 21
+    INS_WHILE       go to state 22
+    INS_WHILE2      go to state 23
+
+
+state 39
+
+   50 INS_WHILE: INS_WHILE2 indent . LIST_INS dedent
+
+    mc_int    shift, and go to state 1
+    mc_float  shift, and go to state 2
+    mc_char   shift, and go to state 3
+    mc_bool   shift, and go to state 4
+    mc_if     shift, and go to state 5
+    mc_for    shift, and go to state 6
+    mc_while  shift, and go to state 7
+    idf       shift, and go to state 8
+
+    INS_DECTYPE     go to state 10
+    TYPE            go to state 11
+    LIST_INS        go to state 71
+    INS             go to state 13
+    INS_AFF         go to state 14
+    INS_IF          go to state 15
+    INS_IF2         go to state 16
+    INS_IF1         go to state 17
+    INS_FOR_RANGE   go to state 18
+    INS_FOR_RANGE2  go to state 19
+    INS_FOR_TAB     go to state 20
+    INS_FOR_TAB2    go to state 21
+    INS_WHILE       go to state 22
+    INS_WHILE2      go to state 23
+
+
+state 40
+
+   36 EXP3: lp . EXP1 rp
+
+    lp       shift, and go to state 40
+    idf      shift, and go to state 57
+    v_int    shift, and go to state 58
+    v_float  shift, and go to state 59
+    v_char   shift, and go to state 60
+    v_bool   shift, and go to state 61
+
+    EXP1  go to state 72
+    EXP2  go to state 48
+    EXP3  go to state 49
+
+
+state 41
+
+   68 COND2: not . COND3
+
+    lp       shift, and go to state 40
+    idf      shift, and go to state 42
+    v_int    shift, and go to state 43
+    v_float  shift, and go to state 44
+    v_char   shift, and go to state 45
+    v_bool   shift, and go to state 46
+
+    EXP1   go to state 47
+    EXP2   go to state 48
+    EXP3   go to state 49
+    EXP_B  go to state 50
+    COND3  go to state 73
+
+
+state 42
+
+   41 EXP3: idf .
+   42     | idf . lb v_int rb
+   62 EXP_B: idf .
+   63      | idf . lb v_int rb
+
+    lb  shift, and go to state 74
+
+    rp        reduce using rule 62 (EXP_B)
+    and       reduce using rule 62 (EXP_B)
+    or        reduce using rule 62 (EXP_B)
+    $default  reduce using rule 41 (EXP3)
+
+
+state 43
+
+   37 EXP3: v_int .
+   58 EXP_B: v_int .
+
+    rp        reduce using rule 58 (EXP_B)
+    and       reduce using rule 58 (EXP_B)
+    or        reduce using rule 58 (EXP_B)
+    $default  reduce using rule 37 (EXP3)
+
+
+state 44
+
+   38 EXP3: v_float .
+   59 EXP_B: v_float .
+
+    rp        reduce using rule 59 (EXP_B)
+    and       reduce using rule 59 (EXP_B)
+    or        reduce using rule 59 (EXP_B)
+    $default  reduce using rule 38 (EXP3)
+
+
+state 45
+
+   39 EXP3: v_char .
+   60 EXP_B: v_char .
+
+    rp        reduce using rule 60 (EXP_B)
+    and       reduce using rule 60 (EXP_B)
+    or        reduce using rule 60 (EXP_B)
+    $default  reduce using rule 39 (EXP3)
+
+
+state 46
+
+   40 EXP3: v_bool .
+   61 EXP_B: v_bool .
+
+    rp        reduce using rule 61 (EXP_B)
+    and       reduce using rule 61 (EXP_B)
+    or        reduce using rule 61 (EXP_B)
+    $default  reduce using rule 40 (EXP3)
+
+
+state 47
+
+   30 EXP1: EXP1 . add EXP2
+   31     | EXP1 . sub EXP2
+   52 EXP_B: EXP1 . g EXP1
+   53      | EXP1 . l EXP1
+   54      | EXP1 . ge EXP1
+   55      | EXP1 . le EXP1
+   56      | EXP1 . eq EXP1
+   57      | EXP1 . dif EXP1
+
+    add  shift, and go to state 75
+    sub  shift, and go to state 76
+    g    shift, and go to state 77
+    l    shift, and go to state 78
+    ge   shift, and go to state 79
+    le   shift, and go to state 80
+    eq   shift, and go to state 81
+    dif  shift, and go to state 82
+
+
+state 48
+
+   32 EXP1: EXP2 .
+   33 EXP2: EXP2 . mul EXP3
+   34     | EXP2 . divv EXP3
+
+    mul   shift, and go to state 83
+    divv  shift, and go to state 84
+
+    $default  reduce using rule 32 (EXP1)
+
+
+state 49
+
+   35 EXP2: EXP3 .
+
+    $default  reduce using rule 35 (EXP2)
+
+
+state 50
+
+   70 COND3: EXP_B .
+
+    $default  reduce using rule 70 (COND3)
+
+
+state 51
+
+   45 INS_IF1: mc_if lp COND . rp dd
+   64 COND: COND . or COND1
+
+    rp  shift, and go to state 85
+    or  shift, and go to state 86
+
+
+state 52
+
+   65 COND: COND1 .
+   66 COND1: COND1 . and COND2
+
+    and  shift, and go to state 87
+
+    $default  reduce using rule 65 (COND)
+
+
+state 53
+
+   67 COND1: COND2 .
+
+    $default  reduce using rule 67 (COND1)
+
+
+state 54
+
+   69 COND2: COND3 .
+
+    $default  reduce using rule 69 (COND2)
+
+
+state 55
+
+   47 INS_FOR_RANGE2: mc_for idf mc_in . mc_range lp EXP1 vrg EXP1 rp dd
+   49 INS_FOR_TAB2: mc_for idf mc_in . idf dd newline
+
+    mc_range  shift, and go to state 88
+    idf       shift, and go to state 89
+
+
+state 56
+
+   51 INS_WHILE2: mc_while lp COND . rp dd newline
+   64 COND: COND . or COND1
+
+    rp  shift, and go to state 90
+    or  shift, and go to state 86
+
+
+state 57
+
+   41 EXP3: idf .
+   42     | idf . lb v_int rb
+
+    lb  shift, and go to state 91
+
+    $default  reduce using rule 41 (EXP3)
+
+
+state 58
+
+   37 EXP3: v_int .
+
+    $default  reduce using rule 37 (EXP3)
+
+
+state 59
+
+   38 EXP3: v_float .
+
+    $default  reduce using rule 38 (EXP3)
+
+
+state 60
+
+   39 EXP3: v_char .
+
+    $default  reduce using rule 39 (EXP3)
+
+
+state 61
+
+   40 EXP3: v_bool .
+
+    $default  reduce using rule 40 (EXP3)
+
+
+state 62
+
+   28 INS_AFF: idf aff EXP1 .
+   30 EXP1: EXP1 . add EXP2
+   31     | EXP1 . sub EXP2
+
+    add  shift, and go to state 75
+    sub  shift, and go to state 76
+
+    $default  reduce using rule 28 (INS_AFF)
+
+
+state 63
+
+   29 INS_AFF: idf lb v_int . rb aff EXP1
+
+    rb  shift, and go to state 92
+
+
+state 64
+
+   11 LIST_IDF: idf aff . v_int
+   12         | idf aff . v_float
+   13         | idf aff . v_char
+   14         | idf aff . v_bool
+   15         | idf aff . v_int vrg LIST_IDF
+   16         | idf aff . v_float vrg LIST_IDF
+   17         | idf aff . v_char vrg LIST_IDF
+   18         | idf aff . v_bool vrg LIST_IDF
+
+    v_int    shift, and go to state 93
+    v_float  shift, and go to state 94
+    v_char   shift, and go to state 95
+    v_bool   shift, and go to state 96
+
+
+state 65
+
+    9 LIST_IDF: idf vrg . LIST_IDF
+
+    idf  shift, and go to state 31
+
+    LIST_IDF  go to state 97
+
+
+state 66
+
+    8 LIST_IDF: idf lb . v_int rb
+   10         | idf lb . v_int rb vrg LIST_IDF
+
+    v_int  shift, and go to state 98
+
+
+state 67
+
+   43 INS_IF: INS_IF2 mc_else dd . newline indent LIST_INS dedent
+
+    newline  shift, and go to state 99
+
+
+state 68
+
+   44 INS_IF2: INS_IF1 newline indent . LIST_INS dedent
+
+    mc_int    shift, and go to state 1
+    mc_float  shift, and go to state 2
+    mc_char   shift, and go to state 3
+    mc_bool   shift, and go to state 4
+    mc_if     shift, and go to state 5
+    mc_for    shift, and go to state 6
+    mc_while  shift, and go to state 7
+    idf       shift, and go to state 8
+
+    INS_DECTYPE     go to state 10
+    TYPE            go to state 11
+    LIST_INS        go to state 100
+    INS             go to state 13
+    INS_AFF         go to state 14
+    INS_IF          go to state 15
+    INS_IF2         go to state 16
+    INS_IF1         go to state 17
+    INS_FOR_RANGE   go to state 18
+    INS_FOR_RANGE2  go to state 19
+    INS_FOR_TAB     go to state 20
+    INS_FOR_TAB2    go to state 21
+    INS_WHILE       go to state 22
+    INS_WHILE2      go to state 23
+
+
+state 69
+
+   46 INS_FOR_RANGE: INS_FOR_RANGE2 newline indent . LIST_INS dedent
+
+    mc_int    shift, and go to state 1
+    mc_float  shift, and go to state 2
+    mc_char   shift, and go to state 3
+    mc_bool   shift, and go to state 4
+    mc_if     shift, and go to state 5
+    mc_for    shift, and go to state 6
+    mc_while  shift, and go to state 7
+    idf       shift, and go to state 8
+
+    INS_DECTYPE     go to state 10
+    TYPE            go to state 11
+    LIST_INS        go to state 101
+    INS             go to state 13
+    INS_AFF         go to state 14
+    INS_IF          go to state 15
+    INS_IF2         go to state 16
+    INS_IF1         go to state 17
+    INS_FOR_RANGE   go to state 18
+    INS_FOR_RANGE2  go to state 19
+    INS_FOR_TAB     go to state 20
+    INS_FOR_TAB2    go to state 21
+    INS_WHILE       go to state 22
+    INS_WHILE2      go to state 23
+
+
+state 70
+
+   48 INS_FOR_TAB: INS_FOR_TAB2 indent LIST_INS . dedent
+
+    dedent  shift, and go to state 102
+
+
+state 71
+
+   50 INS_WHILE: INS_WHILE2 indent LIST_INS . dedent
+
+    dedent  shift, and go to state 103
+
+
+state 72
+
+   30 EXP1: EXP1 . add EXP2
+   31     | EXP1 . sub EXP2
+   36 EXP3: lp EXP1 . rp
+
+    add  shift, and go to state 75
+    sub  shift, and go to state 76
+    rp   shift, and go to state 104
+
+
+state 73
+
+   68 COND2: not COND3 .
+
+    $default  reduce using rule 68 (COND2)
+
+
+state 74
+
+   42 EXP3: idf lb . v_int rb
+   63 EXP_B: idf lb . v_int rb
+
+    v_int  shift, and go to state 105
+
+
+state 75
+
+   30 EXP1: EXP1 add . EXP2
+
+    lp       shift, and go to state 40
+    idf      shift, and go to state 57
+    v_int    shift, and go to state 58
+    v_float  shift, and go to state 59
+    v_char   shift, and go to state 60
+    v_bool   shift, and go to state 61
+
+    EXP2  go to state 106
+    EXP3  go to state 49
+
+
+state 76
+
+   31 EXP1: EXP1 sub . EXP2
+
+    lp       shift, and go to state 40
+    idf      shift, and go to state 57
+    v_int    shift, and go to state 58
+    v_float  shift, and go to state 59
+    v_char   shift, and go to state 60
+    v_bool   shift, and go to state 61
+
+    EXP2  go to state 107
+    EXP3  go to state 49
+
+
+state 77
+
+   52 EXP_B: EXP1 g . EXP1
+
+    lp       shift, and go to state 40
+    idf      shift, and go to state 57
+    v_int    shift, and go to state 58
+    v_float  shift, and go to state 59
+    v_char   shift, and go to state 60
+    v_bool   shift, and go to state 61
+
+    EXP1  go to state 108
+    EXP2  go to state 48
+    EXP3  go to state 49
+
+
+state 78
+
+   53 EXP_B: EXP1 l . EXP1
+
+    lp       shift, and go to state 40
+    idf      shift, and go to state 57
+    v_int    shift, and go to state 58
+    v_float  shift, and go to state 59
+    v_char   shift, and go to state 60
+    v_bool   shift, and go to state 61
+
+    EXP1  go to state 109
+    EXP2  go to state 48
+    EXP3  go to state 49
+
+
+state 79
+
+   54 EXP_B: EXP1 ge . EXP1
+
+    lp       shift, and go to state 40
+    idf      shift, and go to state 57
+    v_int    shift, and go to state 58
+    v_float  shift, and go to state 59
+    v_char   shift, and go to state 60
+    v_bool   shift, and go to state 61
+
+    EXP1  go to state 110
+    EXP2  go to state 48
+    EXP3  go to state 49
+
+
+state 80
+
+   55 EXP_B: EXP1 le . EXP1
+
+    lp       shift, and go to state 40
+    idf      shift, and go to state 57
+    v_int    shift, and go to state 58
+    v_float  shift, and go to state 59
+    v_char   shift, and go to state 60
+    v_bool   shift, and go to state 61
+
+    EXP1  go to state 111
+    EXP2  go to state 48
+    EXP3  go to state 49
+
+
+state 81
+
+   56 EXP_B: EXP1 eq . EXP1
+
+    lp       shift, and go to state 40
+    idf      shift, and go to state 57
+    v_int    shift, and go to state 58
+    v_float  shift, and go to state 59
+    v_char   shift, and go to state 60
+    v_bool   shift, and go to state 61
+
+    EXP1  go to state 112
+    EXP2  go to state 48
+    EXP3  go to state 49
+
+
+state 82
+
+   57 EXP_B: EXP1 dif . EXP1
+
+    lp       shift, and go to state 40
+    idf      shift, and go to state 57
+    v_int    shift, and go to state 58
+    v_float  shift, and go to state 59
+    v_char   shift, and go to state 60
+    v_bool   shift, and go to state 61
+
+    EXP1  go to state 113
+    EXP2  go to state 48
+    EXP3  go to state 49
+
+
+state 83
+
+   33 EXP2: EXP2 mul . EXP3
+
+    lp       shift, and go to state 40
+    idf      shift, and go to state 57
+    v_int    shift, and go to state 58
+    v_float  shift, and go to state 59
+    v_char   shift, and go to state 60
+    v_bool   shift, and go to state 61
+
+    EXP3  go to state 114
+
+
+state 84
+
+   34 EXP2: EXP2 divv . EXP3
+
+    lp       shift, and go to state 40
+    idf      shift, and go to state 57
+    v_int    shift, and go to state 58
+    v_float  shift, and go to state 59
+    v_char   shift, and go to state 60
+    v_bool   shift, and go to state 61
+
+    EXP3  go to state 115
+
+
+state 85
+
+   45 INS_IF1: mc_if lp COND rp . dd
+
+    dd  shift, and go to state 116
+
+
+state 86
+
+   64 COND: COND or . COND1
+
+    lp       shift, and go to state 40
+    not      shift, and go to state 41
+    idf      shift, and go to state 42
+    v_int    shift, and go to state 43
+    v_float  shift, and go to state 44
+    v_char   shift, and go to state 45
+    v_bool   shift, and go to state 46
+
+    EXP1   go to state 47
+    EXP2   go to state 48
+    EXP3   go to state 49
+    EXP_B  go to state 50
+    COND1  go to state 117
+    COND2  go to state 53
+    COND3  go to state 54
+
+
+state 87
+
+   66 COND1: COND1 and . COND2
+
+    lp       shift, and go to state 40
+    not      shift, and go to state 41
+    idf      shift, and go to state 42
+    v_int    shift, and go to state 43
+    v_float  shift, and go to state 44
+    v_char   shift, and go to state 45
+    v_bool   shift, and go to state 46
+
+    EXP1   go to state 47
+    EXP2   go to state 48
+    EXP3   go to state 49
+    EXP_B  go to state 50
+    COND2  go to state 118
+    COND3  go to state 54
+
+
+state 88
+
+   47 INS_FOR_RANGE2: mc_for idf mc_in mc_range . lp EXP1 vrg EXP1 rp dd
+
+    lp  shift, and go to state 119
+
+
+state 89
+
+   49 INS_FOR_TAB2: mc_for idf mc_in idf . dd newline
+
+    dd  shift, and go to state 120
+
+
+state 90
+
+   51 INS_WHILE2: mc_while lp COND rp . dd newline
+
+    dd  shift, and go to state 121
+
+
+state 91
+
+   42 EXP3: idf lb . v_int rb
+
+    v_int  shift, and go to state 122
+
+
+state 92
+
+   29 INS_AFF: idf lb v_int rb . aff EXP1
+
+    aff  shift, and go to state 123
+
+
+state 93
+
+   11 LIST_IDF: idf aff v_int .
+   15         | idf aff v_int . vrg LIST_IDF
+
+    vrg  shift, and go to state 124
+
+    $default  reduce using rule 11 (LIST_IDF)
+
+
+state 94
+
+   12 LIST_IDF: idf aff v_float .
+   16         | idf aff v_float . vrg LIST_IDF
+
+    vrg  shift, and go to state 125
+
+    $default  reduce using rule 12 (LIST_IDF)
+
+
+state 95
+
+   13 LIST_IDF: idf aff v_char .
+   17         | idf aff v_char . vrg LIST_IDF
+
+    vrg  shift, and go to state 126
+
+    $default  reduce using rule 13 (LIST_IDF)
+
+
+state 96
+
+   14 LIST_IDF: idf aff v_bool .
+   18         | idf aff v_bool . vrg LIST_IDF
+
+    vrg  shift, and go to state 127
+
+    $default  reduce using rule 14 (LIST_IDF)
+
+
+state 97
+
+    9 LIST_IDF: idf vrg LIST_IDF .
+
+    $default  reduce using rule 9 (LIST_IDF)
+
+
+state 98
+
+    8 LIST_IDF: idf lb v_int . rb
+   10         | idf lb v_int . rb vrg LIST_IDF
+
+    rb  shift, and go to state 128
+
+
+state 99
+
+   43 INS_IF: INS_IF2 mc_else dd newline . indent LIST_INS dedent
+
+    indent  shift, and go to state 129
+
+
+state 100
+
+   44 INS_IF2: INS_IF1 newline indent LIST_INS . dedent
+
+    dedent  shift, and go to state 130
+
+
+state 101
+
+   46 INS_FOR_RANGE: INS_FOR_RANGE2 newline indent LIST_INS . dedent
+
+    dedent  shift, and go to state 131
+
+
+state 102
+
+   48 INS_FOR_TAB: INS_FOR_TAB2 indent LIST_INS dedent .
+
+    $default  reduce using rule 48 (INS_FOR_TAB)
+
+
+state 103
+
+   50 INS_WHILE: INS_WHILE2 indent LIST_INS dedent .
+
+    $default  reduce using rule 50 (INS_WHILE)
+
+
+state 104
+
+   36 EXP3: lp EXP1 rp .
+
+    $default  reduce using rule 36 (EXP3)
+
+
+state 105
+
+   42 EXP3: idf lb v_int . rb
+   63 EXP_B: idf lb v_int . rb
+
+    rb  shift, and go to state 132
+
+
+state 106
+
+   30 EXP1: EXP1 add EXP2 .
+   33 EXP2: EXP2 . mul EXP3
+   34     | EXP2 . divv EXP3
+
+    mul   shift, and go to state 83
+    divv  shift, and go to state 84
+
+    $default  reduce using rule 30 (EXP1)
+
+
+state 107
+
+   31 EXP1: EXP1 sub EXP2 .
+   33 EXP2: EXP2 . mul EXP3
+   34     | EXP2 . divv EXP3
+
+    mul   shift, and go to state 83
+    divv  shift, and go to state 84
+
+    $default  reduce using rule 31 (EXP1)
+
+
+state 108
+
+   30 EXP1: EXP1 . add EXP2
+   31     | EXP1 . sub EXP2
+   52 EXP_B: EXP1 g EXP1 .
+
+    add  shift, and go to state 75
+    sub  shift, and go to state 76
+
+    $default  reduce using rule 52 (EXP_B)
+
+
+state 109
+
+   30 EXP1: EXP1 . add EXP2
+   31     | EXP1 . sub EXP2
+   53 EXP_B: EXP1 l EXP1 .
+
+    add  shift, and go to state 75
+    sub  shift, and go to state 76
+
+    $default  reduce using rule 53 (EXP_B)
+
+
+state 110
+
+   30 EXP1: EXP1 . add EXP2
+   31     | EXP1 . sub EXP2
+   54 EXP_B: EXP1 ge EXP1 .
+
+    add  shift, and go to state 75
+    sub  shift, and go to state 76
+
+    $default  reduce using rule 54 (EXP_B)
+
+
+state 111
+
+   30 EXP1: EXP1 . add EXP2
+   31     | EXP1 . sub EXP2
+   55 EXP_B: EXP1 le EXP1 .
+
+    add  shift, and go to state 75
+    sub  shift, and go to state 76
+
+    $default  reduce using rule 55 (EXP_B)
+
+
+state 112
+
+   30 EXP1: EXP1 . add EXP2
+   31     | EXP1 . sub EXP2
+   56 EXP_B: EXP1 eq EXP1 .
+
+    add  shift, and go to state 75
+    sub  shift, and go to state 76
+
+    $default  reduce using rule 56 (EXP_B)
+
+
+state 113
+
+   30 EXP1: EXP1 . add EXP2
+   31     | EXP1 . sub EXP2
+   57 EXP_B: EXP1 dif EXP1 .
+
+    add  shift, and go to state 75
+    sub  shift, and go to state 76
+
+    $default  reduce using rule 57 (EXP_B)
+
+
+state 114
+
+   33 EXP2: EXP2 mul EXP3 .
+
+    $default  reduce using rule 33 (EXP2)
+
+
+state 115
+
+   34 EXP2: EXP2 divv EXP3 .
+
+    $default  reduce using rule 34 (EXP2)
+
+
+state 116
+
+   45 INS_IF1: mc_if lp COND rp dd .
+
+    $default  reduce using rule 45 (INS_IF1)
+
+
+state 117
+
+   64 COND: COND or COND1 .
+   66 COND1: COND1 . and COND2
+
+    and  shift, and go to state 87
+
+    $default  reduce using rule 64 (COND)
+
+
+state 118
+
+   66 COND1: COND1 and COND2 .
+
+    $default  reduce using rule 66 (COND1)
+
+
+state 119
+
+   47 INS_FOR_RANGE2: mc_for idf mc_in mc_range lp . EXP1 vrg EXP1 rp dd
+
+    lp       shift, and go to state 40
+    idf      shift, and go to state 57
+    v_int    shift, and go to state 58
+    v_float  shift, and go to state 59
+    v_char   shift, and go to state 60
+    v_bool   shift, and go to state 61
+
+    EXP1  go to state 133
+    EXP2  go to state 48
+    EXP3  go to state 49
+
+
+state 120
+
+   49 INS_FOR_TAB2: mc_for idf mc_in idf dd . newline
+
+    newline  shift, and go to state 134
+
+
+state 121
+
+   51 INS_WHILE2: mc_while lp COND rp dd . newline
+
+    newline  shift, and go to state 135
+
+
+state 122
+
+   42 EXP3: idf lb v_int . rb
+
+    rb  shift, and go to state 136
+
+
+state 123
+
+   29 INS_AFF: idf lb v_int rb aff . EXP1
+
+    lp       shift, and go to state 40
+    idf      shift, and go to state 57
+    v_int    shift, and go to state 58
+    v_float  shift, and go to state 59
+    v_char   shift, and go to state 60
+    v_bool   shift, and go to state 61
+
+    EXP1  go to state 137
+    EXP2  go to state 48
+    EXP3  go to state 49
+
+
+state 124
+
+   15 LIST_IDF: idf aff v_int vrg . LIST_IDF
+
+    idf  shift, and go to state 31
+
+    LIST_IDF  go to state 138
+
+
+state 125
+
+   16 LIST_IDF: idf aff v_float vrg . LIST_IDF
+
+    idf  shift, and go to state 31
+
+    LIST_IDF  go to state 139
+
+
+state 126
+
+   17 LIST_IDF: idf aff v_char vrg . LIST_IDF
+
+    idf  shift, and go to state 31
+
+    LIST_IDF  go to state 140
+
+
+state 127
+
+   18 LIST_IDF: idf aff v_bool vrg . LIST_IDF
+
+    idf  shift, and go to state 31
+
+    LIST_IDF  go to state 141
+
+
+state 128
+
+    8 LIST_IDF: idf lb v_int rb .
+   10         | idf lb v_int rb . vrg LIST_IDF
+
+    vrg  shift, and go to state 142
+
+    $default  reduce using rule 8 (LIST_IDF)
+
+
+state 129
+
+   43 INS_IF: INS_IF2 mc_else dd newline indent . LIST_INS dedent
+
+    mc_int    shift, and go to state 1
+    mc_float  shift, and go to state 2
+    mc_char   shift, and go to state 3
+    mc_bool   shift, and go to state 4
+    mc_if     shift, and go to state 5
+    mc_for    shift, and go to state 6
+    mc_while  shift, and go to state 7
+    idf       shift, and go to state 8
+
+    INS_DECTYPE     go to state 10
+    TYPE            go to state 11
+    LIST_INS        go to state 143
+    INS             go to state 13
+    INS_AFF         go to state 14
+    INS_IF          go to state 15
+    INS_IF2         go to state 16
+    INS_IF1         go to state 17
+    INS_FOR_RANGE   go to state 18
+    INS_FOR_RANGE2  go to state 19
+    INS_FOR_TAB     go to state 20
+    INS_FOR_TAB2    go to state 21
+    INS_WHILE       go to state 22
+    INS_WHILE2      go to state 23
+
+
+state 130
+
+   44 INS_IF2: INS_IF1 newline indent LIST_INS dedent .
+
+    $default  reduce using rule 44 (INS_IF2)
+
+
+state 131
+
+   46 INS_FOR_RANGE: INS_FOR_RANGE2 newline indent LIST_INS dedent .
+
+    $default  reduce using rule 46 (INS_FOR_RANGE)
+
+
+state 132
+
+   42 EXP3: idf lb v_int rb .
+   63 EXP_B: idf lb v_int rb .
+
+    rp        reduce using rule 63 (EXP_B)
+    and       reduce using rule 63 (EXP_B)
+    or        reduce using rule 63 (EXP_B)
+    $default  reduce using rule 42 (EXP3)
+
+
+state 133
+
+   30 EXP1: EXP1 . add EXP2
+   31     | EXP1 . sub EXP2
+   47 INS_FOR_RANGE2: mc_for idf mc_in mc_range lp EXP1 . vrg EXP1 rp dd
+
+    add  shift, and go to state 75
+    sub  shift, and go to state 76
+    vrg  shift, and go to state 144
+
+
+state 134
+
+   49 INS_FOR_TAB2: mc_for idf mc_in idf dd newline .
+
+    $default  reduce using rule 49 (INS_FOR_TAB2)
+
+
+state 135
+
+   51 INS_WHILE2: mc_while lp COND rp dd newline .
+
+    $default  reduce using rule 51 (INS_WHILE2)
+
+
+state 136
+
+   42 EXP3: idf lb v_int rb .
+
+    $default  reduce using rule 42 (EXP3)
+
+
+state 137
+
+   29 INS_AFF: idf lb v_int rb aff EXP1 .
+   30 EXP1: EXP1 . add EXP2
+   31     | EXP1 . sub EXP2
+
+    add  shift, and go to state 75
+    sub  shift, and go to state 76
+
+    $default  reduce using rule 29 (INS_AFF)
+
+
+state 138
+
+   15 LIST_IDF: idf aff v_int vrg LIST_IDF .
+
+    $default  reduce using rule 15 (LIST_IDF)
+
+
+state 139
+
+   16 LIST_IDF: idf aff v_float vrg LIST_IDF .
+
+    $default  reduce using rule 16 (LIST_IDF)
+
+
+state 140
+
+   17 LIST_IDF: idf aff v_char vrg LIST_IDF .
+
+    $default  reduce using rule 17 (LIST_IDF)
+
+
+state 141
+
+   18 LIST_IDF: idf aff v_bool vrg LIST_IDF .
+
+    $default  reduce using rule 18 (LIST_IDF)
+
+
+state 142
+
+   10 LIST_IDF: idf lb v_int rb vrg . LIST_IDF
+
+    idf  shift, and go to state 31
+
+    LIST_IDF  go to state 145
+
+
+state 143
+
+   43 INS_IF: INS_IF2 mc_else dd newline indent LIST_INS . dedent
+
+    dedent  shift, and go to state 146
+
+
+state 144
+
+   47 INS_FOR_RANGE2: mc_for idf mc_in mc_range lp EXP1 vrg . EXP1 rp dd
+
+    lp       shift, and go to state 40
+    idf      shift, and go to state 57
+    v_int    shift, and go to state 58
+    v_float  shift, and go to state 59
+    v_char   shift, and go to state 60
+    v_bool   shift, and go to state 61
+
+    EXP1  go to state 147
+    EXP2  go to state 48
+    EXP3  go to state 49
+
+
+state 145
+
+   10 LIST_IDF: idf lb v_int rb vrg LIST_IDF .
+
+    $default  reduce using rule 10 (LIST_IDF)
+
+
+state 146
+
+   43 INS_IF: INS_IF2 mc_else dd newline indent LIST_INS dedent .
+
+    $default  reduce using rule 43 (INS_IF)
+
+
+state 147
+
+   30 EXP1: EXP1 . add EXP2
+   31     | EXP1 . sub EXP2
+   47 INS_FOR_RANGE2: mc_for idf mc_in mc_range lp EXP1 vrg EXP1 . rp dd
+
+    add  shift, and go to state 75
+    sub  shift, and go to state 76
+    rp   shift, and go to state 148
+
+
+state 148
+
+   47 INS_FOR_RANGE2: mc_for idf mc_in mc_range lp EXP1 vrg EXP1 rp . dd
+
+    dd  shift, and go to state 149
+
+
+state 149
+
+   47 INS_FOR_RANGE2: mc_for idf mc_in mc_range lp EXP1 vrg EXP1 rp dd .
+
+    $default  reduce using rule 47 (INS_FOR_RANGE2)

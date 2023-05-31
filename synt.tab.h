@@ -39,53 +39,45 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     PARENTESE_OUVRANTE = 258,
-     PARENTESE_FERMANTE = 259,
-     ACOLADE_OUVRANTE = 260,
-     ACOLADE_FERMANTE = 261,
-     VRG = 262,
-     DEUX_POINTS = 263,
-     POINT = 264,
-     GUI1 = 265,
-     GUI2 = 266,
-     CROCHET_OUVRANT = 267,
-     CROCHET_FERMANT = 268,
-     MC_IMPORT = 269,
-     AS = 270,
-     NUMPY = 271,
-     MATPLOTLIB = 272,
-     FOR = 273,
-     IN = 274,
-     RANGE = 275,
-     IF = 276,
-     ELSE = 277,
-     ELIF = 278,
-     DEF = 279,
-     IDF = 280,
-     VAL_INT = 281,
-     VAL_FLOAT = 282,
-     VAL_CHAR = 283,
-     VAL_STRING = 284,
-     INT = 285,
-     FLOAT = 286,
-     CHAR = 287,
-     BOOL = 288,
-     PLUS = 289,
-     MOIN = 290,
-     MULTI = 291,
-     DIVISION = 292,
-     AND = 293,
-     OR = 294,
-     NOT = 295,
-     INF = 296,
-     SUP = 297,
-     INF_EGALE = 298,
-     SUP_EGALE = 299,
-     EGALE_EGALE = 300,
-     NOT_EGALE = 301,
-     EGALE = 302,
-     POURCENT = 303,
-     COMM = 304
+     mc_int = 258,
+     mc_float = 259,
+     mc_char = 260,
+     mc_bool = 261,
+     mc_if = 262,
+     mc_else = 263,
+     mc_for = 264,
+     mc_in = 265,
+     mc_range = 266,
+     mc_while = 267,
+     add = 268,
+     sub = 269,
+     mul = 270,
+     divv = 271,
+     aff = 272,
+     vrg = 273,
+     lb = 274,
+     rb = 275,
+     lp = 276,
+     rp = 277,
+     dd = 278,
+     and = 279,
+     or = 280,
+     not = 281,
+     g = 282,
+     l = 283,
+     ge = 284,
+     le = 285,
+     eq = 286,
+     dif = 287,
+     idf = 288,
+     v_int = 289,
+     v_float = 290,
+     v_char = 291,
+     v_bool = 292,
+     indent = 293,
+     dedent = 294,
+     newline = 295,
+     err = 296
    };
 #endif
 
@@ -96,16 +88,18 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 6 "syntaxique.y"
+#line 63 "synt.y"
 
-	int     entier;
-	float   reel;
-	char*   string;
+    int INT;
+    float FLOAT;
+    char CHAR;
+    char *STR;
+    int BOOL;
 
 
 
 /* Line 1676 of yacc.c  */
-#line 109 "syntaxique.tab.h"
+#line 103 "synt.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

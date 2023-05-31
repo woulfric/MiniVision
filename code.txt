@@ -1,9 +1,0 @@
-import numpy as np 
-import matplotlib.pyplot as plt 
-echq = 10
-if (x == 4 or n == 10): 
-echi = 0 
-else: 
-echi = 255 
-
-for 10 in range (20) :
