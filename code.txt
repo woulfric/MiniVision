@@ -1,1 +1,19 @@
-int x = 5
+import numpy as np
+import numpy as np
+int X=50, I
+float Val = (-13.168), I
+Y = 40 + T42
+T = Y + X * 3
+G = 40 / 0
+if (true or false and false):
+	T = 60
+	if (X == 50):
+		T = X + 4
+	else:
+		T = X + 6
+		T = X / 0
+else:
+	X = 32
+
+	for I in range(3, 23):
+		T = I + X + T

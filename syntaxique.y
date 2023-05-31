@@ -2,6 +2,10 @@
    #include<stdio.h>
    #include<stdlib.h>
    #include<string.h>
+
+       int line = 1;
+       int col = 0;
+
 %}
 %union{
 	int     entier;
@@ -25,6 +29,9 @@
 
 %right PARENTESE_OUVRANTE PARENTESE_FERMANTE
 
+%type<reel> EXP1 EXP2 EXP3;
+%type<entier> EXP_B COND COND1 COND2 COND3;
+
 %%
 S: LIST_INS { printf("The program is correct syntactically\n"); YYACCEPT; }
 ;
@@ -36,6 +43,7 @@ TYPE:
     | INT 
     | FLOAT 
     | BOOL 
+    | CHAR 
 
 LIST_IDF: IDF 
         | IDF CROCHET_OUVRANT VAL_INT CROCHET_FERMANT 
@@ -75,6 +83,11 @@ EXP1: EXP1 PLUS EXP2
     | EXP2
 ;
 EXP2: EXP2 MULTI EXP3 
+    | EXP2 DIVISION EXP3{
+            if (DivParZero($3) == 1){
+            printf("Erreur Sementique divison par zero a la ligne : %d\n", line);
+        }
+    }
     | EXP3    
 ;
 EXP3: PARENTESE_OUVRANTE EXP1 PARENTESE_FERMANTE 
@@ -108,6 +121,8 @@ INS_WHILE: INS_WHILE2 LIST_INS
 ;
 INS_WHILE2: WHILE PARENTESE_OUVRANTE COND PARENTESE_FERMANTE DEUX_POINTS 
 ;
+
+
 EXP_B: EXP1 SUP EXP1
      | EXP1 INF EXP1 
      | EXP1 SUP_EGALE EXP1 

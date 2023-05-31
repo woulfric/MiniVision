@@ -3,7 +3,8 @@
     #include <stdlib.h>
     #include "syntaxique.tab.h"
     #include "ts.h" 
-    int line = 1, col = 1;
+    extern int line;
+    extern int col;
 %}
 
 lettreMaj   [A-Z]
@@ -70,10 +71,23 @@ comment     \#(.*\n)
 
 {CST_CHAR}              {printf("CHAR : %s ==> ligne :%d  \n",yytext,line,col)       ; col = col+strlen(yytext); rechercher(yytext, "CST", "CHAR", 0, 0)            ; return VAL_CHAR;}
 {CST_STRING}            {printf("STRING : %s ==> ligne :%d  \n",yytext,line,col)     ; col = col+strlen(yytext); rechercher(yytext, "CST", "STRING", 0, 0)          ; return VAL_STRING;}    
-{CST_INT}               {printf("INT : %s ==> ligne :%d  \n",yytext,line,col)        ; col = col+strlen(yytext); rechercher(yytext, "CST", "INT", atoi(yytext), 0)  ; return VAL_INT;} 
+{CST_INT}               {if ((atoi(yytext)>= -32768) && (atoi(yytext)<=32767)){
+                                printf("INT : %s ==> ligne :%d  \n",yytext,line,col)        ; col = col+strlen(yytext); rechercher(yytext, "CST", "INT", atoi(yytext), 0)  ; return VAL_INT;
+                                }
+							else {
+								printf("Erreur lexicale (ligne : %d\n", line);
+								printf("- La valeur d'un entier doit etre -32768 et 32767 \n");
+							}} 
+
 {CST_FLOAT}             {printf("FLOAT : %s ==> ligne :%d  \n",yytext,line,col)      ; col = col+strlen(yytext); rechercher(yytext, "CST", "FLOAT", atoi(yytext), 0); return VAL_FLOAT;}
 {comment}               {printf("commentaire : %s ==> ligne :%d  \n",yytext,line,col); col = col+strlen(yytext);}
-{idf}                   {printf("IDF : %s ==> ligne :%d  \n",yytext,line,col)        ; col = col+strlen(yytext); rechercher(yytext,"IDF","",0,0)                    ; return IDF;}
+{idf}                   {if (yyleng>8) { 
+								printf("Erreur Lexical, ligne %d, IDF trop long \n ",line);
+								printf("- La longueur d'un IDF doit etre entre 1 et 8 caracteres \n");
+							}else {
+                            printf("IDF : %s ==> ligne :%d  \n",yytext,line,col)        ; col = col+strlen(yytext); rechercher(yytext,"IDF","",0,0)                    ; return IDF;
+                            }
+                        }
 
 [ \t]
 [\n]        {line++; col = 1;}
