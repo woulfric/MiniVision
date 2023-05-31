@@ -58,7 +58,6 @@ INS: IMPORT_STATEMENT
    | INS_IF
    | INS_IF2 
    | INS_FOR_RANGE
-   | INS_FOR_TAB
    | INS_WHILE
 ;
 
