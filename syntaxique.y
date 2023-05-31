@@ -6,6 +6,7 @@
        int line = 1;
        int col = 0;
 
+    int DivParZero(float x);
 %}
 %union{
 	int     entier;
@@ -83,11 +84,7 @@ EXP1: EXP1 PLUS EXP2
     | EXP2
 ;
 EXP2: EXP2 MULTI EXP3 
-    | EXP2 DIVISION EXP3{
-            if (DivParZero($3) == 1){
-            printf("Erreur Sementique divison par zero a la ligne : %d\n", line);
-        }
-    }
+    | EXP2 DIVISION EXP3
     | EXP3    
 ;
 EXP3: PARENTESE_OUVRANTE EXP1 PARENTESE_FERMANTE 

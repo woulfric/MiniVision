@@ -164,7 +164,8 @@ int idfExiste(char name[],char tab[50][50],int n)
     
 }
 
-int DivParZero(int x){
+int DivParZero(float x){
+    printf("test %d\n",x);
     if (x == 0) {
         return 1;
     }

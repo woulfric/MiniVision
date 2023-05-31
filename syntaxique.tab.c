@@ -77,10 +77,11 @@
        int line = 1;
        int col = 0;
 
+    int DivParZero(float x);
 
 
 /* Line 189 of yacc.c  */
-#line 84 "syntaxique.tab.c"
+#line 85 "syntaxique.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -165,7 +166,7 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 10 "syntaxique.y"
+#line 11 "syntaxique.y"
 
 	int     entier;
 	float   reel;
@@ -174,7 +175,7 @@ typedef union YYSTYPE
 
 
 /* Line 214 of yacc.c  */
-#line 178 "syntaxique.tab.c"
+#line 179 "syntaxique.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -186,7 +187,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 190 "syntaxique.tab.c"
+#line 191 "syntaxique.tab.c"
 
 #ifdef short
 # undef short
@@ -500,13 +501,13 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    36,    36,    39,    42,    43,    44,    45,    46,    48,
-      49,    50,    51,    52,    53,    54,    55,    56,    59,    60,
-      63,    64,    65,    66,    67,    68,    69,    72,    73,    75,
-      75,    77,    78,    81,    82,    83,    85,    86,    91,    93,
-      94,    95,    96,    97,    98,   104,   106,   108,   112,   115,
-     120,   122,   126,   127,   128,   129,   130,   131,   132,   133,
-     134,   135,   136,   139,   140,   142,   143,   146,   147,   150
+       0,    37,    37,    40,    43,    44,    45,    46,    47,    49,
+      50,    51,    52,    53,    54,    55,    56,    57,    60,    61,
+      64,    65,    66,    67,    68,    69,    70,    73,    74,    76,
+      76,    78,    79,    82,    83,    84,    86,    87,    88,    90,
+      91,    92,    93,    94,    95,   101,   103,   105,   109,   112,
+     117,   119,   123,   124,   125,   126,   127,   128,   129,   130,
+     131,   132,   133,   136,   137,   139,   140,   143,   144,   147
 };
 #endif
 
@@ -1496,25 +1497,14 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 36 "syntaxique.y"
+#line 37 "syntaxique.y"
     { printf("The program is correct syntactically\n"); YYACCEPT; ;}
     break;
 
-  case 37:
-
-/* Line 1455 of yacc.c  */
-#line 86 "syntaxique.y"
-    {
-            if (DivParZero((yyvsp[(3) - (3)].reel)) == 1){
-            printf("Erreur Sementique a la ligne : %d\n", line);
-        }
-    ;}
-    break;
-
 
 
 /* Line 1455 of yacc.c  */
-#line 1518 "syntaxique.tab.c"
+#line 1508 "syntaxique.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1726,7 +1716,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 155 "syntaxique.y"
+#line 152 "syntaxique.y"
 
 
 
