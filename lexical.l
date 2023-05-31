@@ -16,7 +16,7 @@ CST_STRING  \"[^"$&%@#]*\"
 CST_INT     ({chiffre}+|"\("[+-]{chiffre}+"\)")
 CST_FLOAT	({chiffre}+"."{chiffre}+|\([+-]{chiffre}+"."{chiffre}+\))
 
-idf         [a-zA-Z][a-zA-Z0-9_]*
+idf         [a-zA-Z]([a-z]|[0-9])*
 comment     \#(.*\n)
 
 %%
@@ -70,10 +70,15 @@ comment     \#(.*\n)
 
 {CST_CHAR}              {printf("CHAR : %s ==> ligne :%d  \n",yytext,line,col)       ; col = col+strlen(yytext); rechercher(yytext, "CST", "CHAR", 0, 0)            ; return VAL_CHAR;}
 {CST_STRING}            {printf("STRING : %s ==> ligne :%d  \n",yytext,line,col)     ; col = col+strlen(yytext); rechercher(yytext, "CST", "STRING", 0, 0)          ; return VAL_STRING;}    
-{CST_INT}               {printf("INT : %s ==> ligne :%d  \n",yytext,line,col)        ; col = col+strlen(yytext); rechercher(yytext, "CST", "INT", atoi(yytext), 0)  ; return VAL_INT;} 
+{CST_INT}               {if((atoi(yytext) > -32768) && (atoi(yytext) < 32767)){ 
+                             printf("INT : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "CST", "INT", atoi(yytext), 0)  ; return VAL_INT;
+                            }
+                            else{ printf("erreur lexicale a la ==> ligne %d\n",line,col);}} 
+
 {CST_FLOAT}             {printf("FLOAT : %s ==> ligne :%d  \n",yytext,line,col)      ; col = col+strlen(yytext); rechercher(yytext, "CST", "FLOAT", atoi(yytext), 0); return VAL_FLOAT;}
 {comment}               {printf("commentaire : %s ==> ligne :%d  \n",yytext,line,col); col = col+strlen(yytext);}
-{idf}                   {printf("IDF : %s ==> ligne :%d  \n",yytext,line,col)        ; col = col+strlen(yytext); rechercher(yytext,"IDF","",0,0)                    ; return IDF;}
+{idf}                   {if (yyleng>8){ printf ("lexicale error: IDF too long %s \n", yytext);}
+                            else{ printf("IDF : %s ==> ligne :%d  \n",yytext,line,col); col = col+strlen(yytext); rechercher(yytext,"IDF","",0,0); return IDF;}}
 
 [ \t]
 [\n]        {line++; col = 1;}

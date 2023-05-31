@@ -312,11 +312,11 @@ static yyconst int yy_ec[256] =
        21,   22,    1,    7,   23,   23,   23,   23,   23,   23,
        23,   23,   23,   23,   23,   23,   23,   23,   23,   23,
        23,   23,   23,   23,   23,   23,   23,   23,   23,   23,
-       24,    1,   25,    1,   26,    1,   27,   28,   29,   30,
+       24,    1,   25,    1,    1,    1,   26,   27,   28,   29,
 
-       31,   32,   33,   34,   35,   23,   23,   36,   37,   38,
-       39,   40,   23,   41,   42,   43,   44,   23,   23,   23,
-       45,   23,    1,    1,    1,    1,    1,    1,    1,    1,
+       30,   31,   32,   33,   34,   35,   35,   36,   37,   38,
+       39,   40,   35,   41,   42,   43,   44,   35,   35,   35,
+       45,   35,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -337,7 +337,7 @@ static yyconst int yy_meta[46] =
     {   0,
         1,    1,    1,    1,    1,    2,    2,    2,    3,    1,
         1,    1,    1,    1,    1,    1,    1,    4,    1,    1,
-        1,    1,    4,    1,    1,    4,    4,    4,    4,    4,
+        1,    1,    1,    1,    1,    4,    4,    4,    4,    4,
         4,    4,    4,    4,    4,    4,    4,    4,    4,    4,
         4,    4,    4,    4,    4
     } ;
@@ -346,17 +346,17 @@ static yyconst short int yy_base[121] =
     {   0,
         0,    0,  138,  139,  139,  139,  116,  131,  132,  139,
         0,   33,  139,  139,  139,  139,  139,  139,  139,   31,
-      139,  113,  112,  111,    0,  139,  139,   12,   92,   96,
-       98,   92,   16,   19,  100,   14,   85,   98,  139,  119,
-      139,  120,  139,  113,  103,  102,   43,  139,  139,  139,
-        0,   89,    0,   79,   90,   84,   25,   76,   73,    0,
+      139,  113,  112,  111,    0,  139,  139,   12,   92,   97,
+       99,   92,   16,   20,  101,   17,   85,   99,  139,  119,
+      139,  120,  139,  113,  103,  102,   44,  139,  139,  139,
+        0,   90,    0,   79,   91,   85,   25,   76,   73,    0,
        73,   69,   68,   67,   72,    0,   70,  139,   52,   89,
-        0,   70,   64,    0,   72,   72,   75,    0,   62,    0,
-       60,    0,   59,   65,  139,   79,    0,    0,    0,    0,
-       53,   54,   58,   48,   61,   51,    0,   48,   51,    0,
+        0,   70,   64,    0,   73,   73,   76,    0,   62,    0,
+       60,    0,   59,   66,  139,   79,    0,    0,    0,    0,
+       53,   54,   58,   48,   62,   53,    0,   48,   51,    0,
 
-        0,  139,    0,   46,   52,   52,   58,   69,   44,   38,
-       41,   36,   27,   22,  139,  139,   70,   74,   78,   60
+        0,  139,    0,   46,   52,   53,   59,   69,   44,   37,
+       33,   33,   27,   22,  139,  139,   71,   75,   79,   49
     } ;
 
 static yyconst short int yy_def[121] =
@@ -380,13 +380,13 @@ static yyconst short int yy_nxt[185] =
     {   0,
         4,    5,    6,    7,    8,    9,    4,   10,   11,   12,
        13,   14,   15,   16,   17,   18,   19,   20,   21,   22,
-       23,   24,   25,   26,   27,    4,   28,   29,   30,   31,
-       32,   33,   25,   25,   34,   25,   35,   36,   37,   25,
+       23,   24,   25,   26,   27,   28,   29,   30,   31,   32,
+       33,   25,   25,   34,   25,   25,   35,   36,   37,   25,
        38,   25,   25,   25,   25,   45,   46,   45,   47,   52,
-       60,   58,   64,   53,   59,   61,   62,   65,   46,   75,
-       47,  102,   85,   51,  115,  114,   76,   86,   96,   69,
-       40,  113,   40,   40,   42,   42,   42,   42,   44,   44,
-      112,   44,  111,  110,  109,  108,  107,  106,  105,  104,
+       60,   58,   51,   53,   59,   64,   61,   62,   75,   46,
+       65,   47,   85,  102,  115,  114,   76,   86,  113,   69,
+       96,   40,  112,   40,   40,   42,   42,   42,   42,   44,
+       44,  111,   44,  110,  109,  108,  107,  106,  105,  104,
       103,  101,  100,   99,   98,   97,   96,   95,   94,   93,
 
        92,   91,   90,   89,   88,   87,   70,   84,   83,   82,
@@ -407,10 +407,10 @@ static yyconst short int yy_chk[185] =
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,   12,   20,   12,   20,   28,
-       34,   33,   36,   28,   33,   34,   34,   36,   47,   57,
-       47,   96,   69,  120,  114,  113,   57,   69,   96,   69,
-      117,  112,  117,  117,  118,  118,  118,  118,  119,  119,
-      111,  119,  110,  109,  108,  107,  106,  105,  104,   99,
+       34,   33,  120,   28,   33,   36,   34,   34,   57,   47,
+       36,   47,   69,   96,  114,  113,   57,   69,  112,   69,
+       96,  117,  111,  117,  117,  118,  118,  118,  118,  119,
+      119,  110,  119,  109,  108,  107,  106,  105,  104,   99,
        98,   95,   94,   93,   92,   91,   86,   84,   83,   81,
 
        79,   77,   76,   75,   73,   72,   70,   67,   65,   64,
@@ -883,44 +883,48 @@ YY_RULE_SETUP
 case 41:
 YY_RULE_SETUP
 #line 73 "lexical.l"
-{printf("INT : %s ==> ligne :%d  \n",yytext,line,col)        ; col = col+strlen(yytext); rechercher(yytext, "CST", "INT", atoi(yytext), 0)  ; return VAL_INT;} 
+{if((atoi(yytext) > -32768) && (atoi(yytext) < 32767)){ 
+                             printf("INT : %s ==> ligne :%d  \n",yytext,line); col = col+strlen(yytext); rechercher(yytext, "CST", "INT", atoi(yytext), 0)  ; return VAL_INT;
+                            }
+                            else{ printf("erreur lexicale a la ==> ligne %d\n",line,col);}} 
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 74 "lexical.l"
+#line 78 "lexical.l"
 {printf("FLOAT : %s ==> ligne :%d  \n",yytext,line,col)      ; col = col+strlen(yytext); rechercher(yytext, "CST", "FLOAT", atoi(yytext), 0); return VAL_FLOAT;}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 75 "lexical.l"
+#line 79 "lexical.l"
 {printf("commentaire : %s ==> ligne :%d  \n",yytext,line,col); col = col+strlen(yytext);}
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 76 "lexical.l"
-{printf("IDF : %s ==> ligne :%d  \n",yytext,line,col)        ; col = col+strlen(yytext); rechercher(yytext,"IDF","",0,0)                    ; return IDF;}
+#line 80 "lexical.l"
+{if (yyleng>8){ printf ("lexicale error: IDF too long %s \n", yytext);}
+                            else{ printf("IDF : %s ==> ligne :%d  \n",yytext,line,col); col = col+strlen(yytext); rechercher(yytext,"IDF","",0,0); return IDF;}}
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 78 "lexical.l"
+#line 83 "lexical.l"
 
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 79 "lexical.l"
+#line 84 "lexical.l"
 {line++; col = 1;}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 80 "lexical.l"
+#line 85 "lexical.l"
 {col = col+strlen(yytext); printf("erreur lexicale a la ==> ligne %d, colone %d \n",line,col);}
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 82 "lexical.l"
+#line 87 "lexical.l"
 ECHO;
 	YY_BREAK
-#line 924 "lex.yy.c"
+#line 928 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1806,5 +1810,5 @@ int main()
 	return 0;
 	}
 #endif
-#line 82 "lexical.l"
+#line 87 "lexical.l"
 

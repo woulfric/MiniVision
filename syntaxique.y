@@ -70,6 +70,7 @@ VALUE :   VAL_INT
          ;
 
 Expression :     VALUE
+                |IDF
                 |Expression OPPERATOR Expression
                 |PARENTESE_OUVRANTE Expression PARENTESE_FERMANTE
                 |GUI2 IDF GUI2
@@ -80,7 +81,7 @@ Expression :     VALUE
                 |
                 ;
 
-IF_STATEMENT   : IF CONDITION DEUX_POINTS STATEMENT ELIF_STMT ELSE_STMT
+IF_STATEMENT   : IF PARENTESE_OUVRANTE CONDITION PARENTESE_FERMANTE DEUX_POINTS STATEMENT ELIF_STMT ELSE_STMT
 
 ELIF_STMT :  ELIF CONDITION DEUX_POINTS STATEMENT
             |ELIF
@@ -91,15 +92,16 @@ ELSE_STMT :  ELSE DEUX_POINTS STATEMENT
             |
             ;
 
-CONDITION :     Expression EGALE_EGALE Expression
-               |Expression SUP Expression
-               |Expression SUP_EGALE Expression
-               |Expression INF Expression
-               |Expression INF_EGALE Expression
+CONDITION :     Expression COND_OPP Expression
                |CONDITION LOGICAL_OPPERATOR CONDITION
 
+COND_OPP :   EGALE_EGALE
+            |SUP
+            |SUP_EGALE
+            |INF
+            |INF_EGALE
 
-LOOP  : FOR Expression IN RANGE PARENTESE_OUVRANTE VAL_INT PARENTESE_FERMANTE DEUX_POINTS STATEMENT;
+LOOP  : FOR PARENTESE_OUVRANTE Expression PARENTESE_FERMANTE IN RANGE PARENTESE_OUVRANTE VAL_INT PARENTESE_FERMANTE DEUX_POINTS STATEMENT;
 
 %%
 
