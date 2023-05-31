@@ -39,45 +39,54 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     mc_int = 258,
-     mc_float = 259,
-     mc_char = 260,
-     mc_bool = 261,
-     mc_if = 262,
-     mc_else = 263,
-     mc_for = 264,
-     mc_in = 265,
-     mc_range = 266,
-     mc_while = 267,
-     add = 268,
-     sub = 269,
-     mul = 270,
-     divv = 271,
-     aff = 272,
-     vrg = 273,
-     lb = 274,
-     rb = 275,
-     lp = 276,
-     rp = 277,
-     dd = 278,
-     and = 279,
-     or = 280,
-     not = 281,
-     g = 282,
-     l = 283,
-     ge = 284,
-     le = 285,
-     eq = 286,
-     dif = 287,
-     idf = 288,
-     v_int = 289,
-     v_float = 290,
-     v_char = 291,
-     v_bool = 292,
-     indent = 293,
-     dedent = 294,
-     newline = 295,
-     err = 296
+     PARENTESE_OUVRANTE = 258,
+     PARENTESE_FERMANTE = 259,
+     ACOLADE_OUVRANTE = 260,
+     ACOLADE_FERMANTE = 261,
+     VRG = 262,
+     DEUX_POINTS = 263,
+     POINT = 264,
+     GUI1 = 265,
+     GUI2 = 266,
+     CROCHET_OUVRANT = 267,
+     CROCHET_FERMANT = 268,
+     MC_IMPORT = 269,
+     AS = 270,
+     NUMPY = 271,
+     MATPLOTLIB = 272,
+     FOR = 273,
+     IN = 274,
+     RANGE = 275,
+     IF = 276,
+     ELSE = 277,
+     ELIF = 278,
+     WHILE = 279,
+     DEF = 280,
+     IDF = 281,
+     VAL_INT = 282,
+     VAL_FLOAT = 283,
+     VAL_CHAR = 284,
+     VAL_STRING = 285,
+     INT = 286,
+     FLOAT = 287,
+     CHAR = 288,
+     BOOL = 289,
+     PLUS = 290,
+     MOIN = 291,
+     MULTI = 292,
+     DIVISION = 293,
+     AND = 294,
+     OR = 295,
+     NOT = 296,
+     INF = 297,
+     SUP = 298,
+     INF_EGALE = 299,
+     SUP_EGALE = 300,
+     EGALE_EGALE = 301,
+     NOT_EGALE = 302,
+     EGALE = 303,
+     POURCENT = 304,
+     COMM = 305
    };
 #endif
 
@@ -88,18 +97,16 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 63 "synt.y"
+#line 6 "syntaxique.y"
 
-    int INT;
-    float FLOAT;
-    char CHAR;
-    char *STR;
-    int BOOL;
+	int     entier;
+	float   reel;
+	char*   string;
 
 
 
 /* Line 1676 of yacc.c  */
-#line 103 "synt.tab.h"
+#line 110 "syntaxique.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

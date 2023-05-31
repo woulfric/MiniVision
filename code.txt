@@ -1,5 +1,5 @@
-# Comment
-int X=50, I, T[50]
+import numpy as np
+int X=50, I
 float Val = (-13.168), I
 Y = 40 + T[42]
 T[21] = Y + X * 3
