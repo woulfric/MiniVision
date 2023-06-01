@@ -1,5 +1,5 @@
 import numpy as np
-import numpy as np
+import matplotlib.pyplot as plt
 int X=50, I
 float Val = (-13.168), I
 Y = 40 + T42

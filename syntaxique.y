@@ -30,8 +30,6 @@
 
 %right PARENTESE_OUVRANTE PARENTESE_FERMANTE
 
-%type<reel> EXP1 EXP2 EXP3;
-%type<entier> EXP_B COND COND1 COND2 COND3;
 
 %%
 S: LIST_INS { printf("The program is correct syntactically\n"); YYACCEPT; }
